@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Torneos';
+  status = true;
+addToggle()
+{
+  this.status = !this.status;
+}
 }
