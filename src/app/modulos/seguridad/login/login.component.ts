@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
 import { PublicService } from '../../../servicios/public.service';
 import { response } from 'express';
+
+// libreria para mandar la clave encriptada "npm install crypto-js" y "npm i --save-dev @types/crypto-js"
+import {MD5} from 'crypto-js';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -63,10 +66,10 @@ export class LoginComponent {
       this.fGroup2 = this.fb.group({
         nombre: ['',[Validators.required,]],
         nickname: ['',[Validators.required,]],
-        edad: ['',[Validators.required,]],
+        edad: ['',[Validators.required, Validators.pattern('^[0-9]*$')]],
         ciudad: ['',[Validators.required,]],
-        email: ['',[Validators.required,]],
-        celular: ['',[Validators.required,]],
+        email: ['',[Validators.required, Validators.email,]],
+        celular: ['',[Validators.required, Validators.pattern('^[0-9]*$')]],
         clave: ['',[Validators.required,]],
       });
     }
@@ -79,9 +82,10 @@ export class LoginComponent {
       }else{
         let usuario = this.fGroup.controls['usuario'].value;
         let clave = this.fGroup.controls['clave'].value;
+        let claveEncriptada = MD5(clave).toString();
         //console.log(usuario);
         //console.log(clave);
-        this.servicioSeguridad.IdentificarUsuario(usuario,clave).subscribe({
+        this.servicioSeguridad.IdentificarUsuario(usuario,claveEncriptada).subscribe({
           next: (respuesta:RespuestaServer) => {
             console.log(respuesta);
       }
@@ -92,21 +96,6 @@ export class LoginComponent {
   EnviarRegister(){
     //console.log('enviando formulario');
     if (this.fGroup2.invalid) {
-      let nombre = this.fGroup2.controls['nombre'].value;
-      let nickname = this.fGroup2.controls['nickname'].value;
-      let edad = this.fGroup2.controls['edad'].value;
-      let ciudad = this.fGroup2.controls['ciudad'].value;
-      let email = this.fGroup2.controls['email'].value;
-      let celular = this.fGroup2.controls['celular'].value;
-      let clave = this.fGroup2.controls['clave'].value;
-      console.log(nombre);
-      console.log(nickname);
-      console.log(edad);
-      console.log(ciudad);
-      console.log(email);
-      console.log(celular);
-      console.log(clave);
-
       console.log('Formulario invalido');
       return;
     }else{
@@ -117,13 +106,37 @@ export class LoginComponent {
       let email = this.fGroup2.controls['email'].value;
       let celular = this.fGroup2.controls['celular'].value;
       let clave = this.fGroup2.controls['clave'].value;
-      console.log(nombre);
-      console.log(nickname);
-      console.log(edad);
-      console.log(ciudad);
-      console.log(email);
-      console.log(celular);
-      console.log(clave);
+      //validar el tipo de dato
+      //console.log(typeof(edad));
+      //console.log(typeof(ciudad));
+      try {
+        edad = parseInt(edad);
+        ciudad = parseInt(ciudad);
+      } catch (error) {
+        alert('Error en el tipo de dato');
+        return;
+      }
+
+      //console.log(typeof(edad));
+      //console.log(typeof(ciudad));
+      //console.log(nombre);
+      //console.log(nickname);
+      //console.log(edad);
+      //console.log(ciudad);
+      //console.log(email);
+      //console.log(celular);
+      //console.log(clave);
+      this.servicioSeguridad.RegistrarUsuario(nombre,edad,celular,email,ciudad,nickname,clave).subscribe({
+        next: (respuesta:RespuestaServer) => {
+          console.log(respuesta);
+          if(respuesta.CODIGO == 200){
+            alert('Usuario registrado con exito');
+            this.deactivateRightPanel();
+          }else{
+            alert('Error al registrar el usuario');
+          }
+        }
+      });
 
     }
   }
