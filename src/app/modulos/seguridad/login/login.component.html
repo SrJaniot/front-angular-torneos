@@ -4,26 +4,20 @@
 
   <div class="container" id="container" [ngClass]="{'right-panel-active': rightPanelActive}">
     <div class="form-container sign-up-container">
-      <form action="#">
-
-        <input type="text" placeholder="Nombre completo" />
-        <input type="text" placeholder="Nick name" />
-        <input type="text" placeholder="Edad" />
-        <select placeholder="ciudad" class="selectinput">
+      <form [formGroup]="fGroup2">
+        <input formControlName="nombre" type="text" placeholder="Nombre completo" />
+        <input formControlName="nickname" type="text" placeholder="Nick name" />
+        <input formControlName="edad" type="text" placeholder="Edad" />
+        <select formControlName="ciudad" placeholder="ciudad" class="selectinput">
           <option value="">Selecciona tu ciudad</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
+          <option *ngFor="let ciudad of ciudades" [value]="ciudad.id_ciudad">{{ciudad.nom_ciudad}}</option>
+
           <!-- Añade más opciones aquí -->
         </select>
-
-
-        <input type="email" placeholder="Email" />
-        <input type="email" placeholder="Celular" />
-
-        <input type="password" placeholder="Contraseña" />
-
-
-        <button>Registrate</button>
+        <input formControlName="email" type="email" placeholder="Email" />
+        <input formControlName="celular" type="text" placeholder="Celular" />
+        <input formControlName="clave" type="password" placeholder="Contraseña" />
+        <button (click)="EnviarRegister()">Registrate</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
