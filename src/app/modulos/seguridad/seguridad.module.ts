@@ -8,6 +8,8 @@ import { CambioClaveComponent } from './cambio-clave/cambio-clave.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { CrearUsuarioComponent } from './usuario/crear-usuario/crear-usuario.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +23,10 @@ import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
   ],
   imports: [
     CommonModule,
-    SeguridadRoutingModule
+    SeguridadRoutingModule,
+    NgOtpInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SeguridadModule { }

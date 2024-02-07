@@ -27,13 +27,20 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form action="#">
+      <form [formGroup]="fGroup">
         <h1>Login</h1>
 
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Contraseña" />
+        <input formControlName="usuario" type="email" placeholder="Email" />
+        <div class="show-errors" *ngIf="obtenerFormGroup['usuario'].errors && (obtenerFormGroup['usuario'].dirty || obtenerFormGroup['usuaro'])">
+          <strong>Este campo es obligatorio</strong>
+        </div>
+        <input formControlName="clave" type="password" placeholder="Contraseña" />
+        <div class="show-errors" *ngIf="obtenerFormGroup['clave'].errors && (obtenerFormGroup['clave'].dirty || obtenerFormGroup['clave'].touched)" >
+          <strong>Este campo es obligatorio</strong>
+        </div>
+
         <a href="#">¿Olvidaste tu contraseña?</a>
-        <button>Entrar</button>
+        <button (click)="EnviarLogin()">Entrar</button>
       </form>
     </div>
     <div class="overlay-container">

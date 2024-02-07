@@ -1,1 +1,15 @@
-<p>idenificar-codigo-towfa works!</p>
+<div class="center-screen fondonegro">
+  <div class="auth-container">
+    <div class="icon-block">
+      <a href="/inicio"><img src="../../../../assets/img/login.gif" alt="Lock Icon"/></a>
+    </div>
+    <div class="text-block">
+      <h2 class="fw-bold">Código de autenticacion </h2>
+      <div class="text-muted">Ingresa el código que te enviamos a tu Whatsapp  </div>
+    </div>
+    <div class="otp-input">
+      <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="configOptions"></ng-otp-input>
+    </div>
+  </div>
+</div>
+
