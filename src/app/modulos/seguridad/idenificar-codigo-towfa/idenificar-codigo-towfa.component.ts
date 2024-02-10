@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SeguridadService } from '../../../servicios/seguridad.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './idenificar-codigo-towfa.component.css'
 })
 export class IdenificarCodigoTowfaComponent {
+
+
+  // variables
   title = 'otp-app';
 
   otp!: string;
@@ -14,12 +19,27 @@ export class IdenificarCodigoTowfaComponent {
   btnStatus: string = "btn-light";
 
   public configOptions = {
-    length: 6,
+    length: 5,
     inputClass: 'digit-otp',
     containerClass: 'd-flex justify-content-between'
   }
 
+  usuarioId: string = '';
+
+  // constructor que me permite inicializar las variables
+  constructor(
+    private servicioSeguridad: SeguridadService,
+    private router: Router,
+   ){ }
+
   ngOnInit() {
+    let datos =this.servicioSeguridad.ObteberDatosLocalStorage_USUARIO();
+    if(datos != null){
+      this.usuarioId = datos._id!;
+    }else{
+      this.router.navigateByUrl('/seguridad/login');
+
+    }
 
   }
 
@@ -32,13 +52,30 @@ export class IdenificarCodigoTowfaComponent {
     }
 
     if(this.otp.length == this.configOptions.length) {
-      console.log('Ready to go');
+      //console.log(this.usuarioId);
+      //console.log(this.otp);
+       this.servicioSeguridad.IdentificarUsuarioCODIGO2fa(this.usuarioId, this.otp).subscribe((response) => {
+        if(response.CODIGO == 200){
+          //console.log('Usuario identificado');
+          console.log(response);
+          //alert('Usuario identificado');
+          this.servicioSeguridad.AlmacenarDatosUsuarioIdentificadoSESION(response);
+          this.router.navigateByUrl('/home');
+
+
+
+          //console.log(response.DATOS);
+          //this.servicioSeguridad.AlmacenarDatosUsuarioIdentificado(response);
+          //this.router.navigateByUrl('/dashboard');
+        }else{
+          console.log(response);
+          alert('Error al identificar el usuario');
+          //console.log('Error al identificar el usuario');
+        }
+      });
 
     }
   }
-
-
-
 
 
 

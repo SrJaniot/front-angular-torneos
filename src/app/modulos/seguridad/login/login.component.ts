@@ -4,7 +4,7 @@ import { SeguridadService } from '../../../servicios/seguridad.service';
 import { Router } from '@angular/router';
 import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
 import { PublicService } from '../../../servicios/public.service';
-import { response } from 'express';
+import e, { response } from 'express';
 
 // libreria para mandar la clave encriptada "npm install crypto-js" y "npm i --save-dev @types/crypto-js"
 import {MD5} from 'crypto-js';
@@ -87,7 +87,20 @@ export class LoginComponent {
         //console.log(clave);
         this.servicioSeguridad.IdentificarUsuario(usuario,claveEncriptada).subscribe({
           next: (respuesta:RespuestaServer) => {
-            console.log(respuesta);
+            //console.log(respuesta);
+            if(respuesta.CODIGO == 200){
+              alert('Usuario identificado con exito');
+              console.log(respuesta.DATOS);
+              if (this.servicioSeguridad.AlmacenarDatosUsuarioIdentificado(respuesta)){
+                this.router.navigate(['/seguridad/codigo-2fa']);
+              }else{
+                alert('Error al identificar el usuario, ya existe un usuario identificado en el sistema');
+              }
+
+            }else{
+              alert('Error al identificar el usuario');
+            }
+
       }
     });
     }

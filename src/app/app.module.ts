@@ -18,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     PiePaginaComponent,
     MenuLateralComponent,
     InicioComponent,
-    RutaNoEncontradaComponent
+    RutaNoEncontradaComponent,
+    
   ],
   imports: [
     BrowserModule,
