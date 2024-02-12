@@ -51,6 +51,11 @@ export class LoginComponent {
     // construir el formulario
     this.ConstriurFormulariologin();
     this.ConstriurFormularioregister();
+    //funcion que valida que el usuario no este en localstorage
+    let datos =this.servicioSeguridad.ObteberDatosLocalStorage_USUARIO();
+    if(datos != null){
+      this.router.navigateByUrl('/seguridad/codigo-2fa');
+    }
   }
 
     // funcion que me permite construir el formulario con las variables que se van a utilizar.
@@ -91,6 +96,8 @@ export class LoginComponent {
             if(respuesta.CODIGO == 200){
               alert('Usuario identificado con exito');
               console.log(respuesta.DATOS);
+              localStorage.removeItem('datosUsuario');
+              localStorage.removeItem('datosSesion');
               if (this.servicioSeguridad.AlmacenarDatosUsuarioIdentificado(respuesta)){
                 this.router.navigate(['/seguridad/codigo-2fa']);
               }else{

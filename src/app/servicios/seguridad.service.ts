@@ -48,7 +48,7 @@ export class SeguridadService {
    * @returns
    */
   RegistrarUsuario(nombre: string, edad: number, celular: string, correo: string, id_ciudad: number, nickname_jugador: string, clave:string):Observable <RespuestaServer>{
-    return this.http.post(this.url_ms_seguridad + 'funcion-inserta-usuario-jugador-datos-personales',{
+    return this.http.post(this.url_ms_seguridad + 'funcion-inserta-usuario-jugador-datos-personales-publico',{
       nombre: nombre,
       edad: edad,
       celular: celular,
@@ -63,6 +63,24 @@ export class SeguridadService {
     });
 
   }
+
+
+  //metodo para validar el hash de correo
+  ValidarHashCorreopublico(hash: string):Observable <RespuestaServer>{
+    return this.http.post(this.url_ms_seguridad + 'validar-hash-correo-publico',{
+      codigoHash: hash
+    });
+  }
+
+
+
+
+
+
+
+
+
+
   /**
    * metodo para almacenar los datos del usuario identificado en el localstorage
    * @param datosUsuario
@@ -152,7 +170,7 @@ export class SeguridadService {
     let datosLS2 = localStorage.getItem('datosUsuario');
     if (datosLS && datosLS2) {
       let sesion=this.ObtenerDatosUsuarioIdentificadoSESION();
-      this.SerrarSesion(sesion?.usuario?._id!,sesion?.token!).subscribe((respuesta:RespuestaServer)=>{
+      this.CerrarSesion(sesion?.usuario?._id!,sesion?.token!).subscribe((respuesta:RespuestaServer)=>{
         if (respuesta.CODIGO == 200) {
           console.log('Sesion cerrada en angular y en el backend');
           localStorage.removeItem('datosSesion');
@@ -165,7 +183,7 @@ export class SeguridadService {
     }
   }
 
-  SerrarSesion(id_usuario: string ,token: string):Observable <RespuestaServer> {
+  CerrarSesion(id_usuario: string ,token: string):Observable <RespuestaServer> {
     return this.http.post(this.url_ms_seguridad + 'cerrar-sesion',{
       id_usuario: id_usuario,
       token: token

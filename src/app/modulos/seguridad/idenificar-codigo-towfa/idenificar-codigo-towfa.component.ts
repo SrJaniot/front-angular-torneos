@@ -34,11 +34,15 @@ export class IdenificarCodigoTowfaComponent {
 
   ngOnInit() {
     let datos =this.servicioSeguridad.ObteberDatosLocalStorage_USUARIO();
-    if(datos != null){
+    let datosSesion =this.servicioSeguridad.ObtenerDatosUsuarioIdentificadoSESION();
+    console.log(datos);
+    console.log(datosSesion);
+    if(datos != null && datosSesion === null){
       this.usuarioId = datos._id!;
     }else{
+      localStorage.removeItem('datosUsuario');
+      localStorage.removeItem('datosSesion');
       this.router.navigateByUrl('/seguridad/login');
-
     }
 
   }
@@ -60,7 +64,7 @@ export class IdenificarCodigoTowfaComponent {
           console.log(response);
           //alert('Usuario identificado');
           this.servicioSeguridad.AlmacenarDatosUsuarioIdentificadoSESION(response);
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/noticias/home');
 
 
 
@@ -75,6 +79,13 @@ export class IdenificarCodigoTowfaComponent {
       });
 
     }
+  }
+
+
+  volver(){
+    // eliminar el usuario identificado del localstorage
+    localStorage.removeItem('datosUsuario');
+    this.router.navigateByUrl('/seguridad/login');
   }
 
 

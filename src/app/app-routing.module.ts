@@ -22,6 +22,10 @@ const routes: Routes = [
     path:'seguridad',
     loadChildren: () => import('./modulos/seguridad/seguridad.module').then(m => m.SeguridadModule)
   },
+  {
+    path:'noticias',
+    loadChildren: () => import('./modulos/noticias/noticias.module').then(m => m.NoticiasModule)
+  },
 
 
   // RUTA NO ENCONTRADA TIENE QUE SER EL ULTIMO

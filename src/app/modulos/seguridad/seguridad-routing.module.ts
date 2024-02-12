@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { IdenificarCodigoTowfaComponent } from './idenificar-codigo-towfa/idenificar-codigo-towfa.component';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { ValidarCorreoComponent } from './validar-correo/validar-correo.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path:'cerrar-sesion',
     component: CerrarSesionComponent
+  },
+  {
+    path:'validar-correo/:hash',
+    component: ValidarCorreoComponent
   }
 
 

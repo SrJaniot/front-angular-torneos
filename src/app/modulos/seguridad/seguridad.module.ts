@@ -10,6 +10,7 @@ import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
+import { ValidarCorreoComponent } from './validar-correo/validar-correo.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
     RecuperarClaveComponent,
 
     CrearCuentaComponent,
-      CerrarSesionComponent
+      CerrarSesionComponent,
+      ValidarCorreoComponent
   ],
   imports: [
     CommonModule,

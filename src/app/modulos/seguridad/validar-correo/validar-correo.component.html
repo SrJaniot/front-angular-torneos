@@ -1,0 +1,6 @@
+<div class="container">
+  <h1 *ngIf="!validado" class="neon-text">Validando correo <span class="dot" id="dot1">.</span><span class="dot" id="dot2">.</span><span class="dot" id="dot3">.</span></h1>
+  <h1 *ngIf="validado" class="neon-text">Correo validado</h1>
+  <a *ngIf="validado" routerLink="/seguridad/login" class="neon-button">Iniciar sesión</a>
+
+</div>
