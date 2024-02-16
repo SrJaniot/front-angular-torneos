@@ -4,6 +4,14 @@ import { CommonModule } from '@angular/common';
 import { NoticiasRoutingModule } from './noticias-routing.module';
 import { HomeComponent } from './home/home.component';
 
+//importar carrusel
+// npm install ngx-owl-carousel-o y  npm install owl.carousel
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -11,7 +19,8 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    NoticiasRoutingModule
+    NoticiasRoutingModule,
+
   ]
 })
 export class NoticiasModule { }

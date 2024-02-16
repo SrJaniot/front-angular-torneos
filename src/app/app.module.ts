@@ -9,6 +9,9 @@ import { MenuLateralComponent } from './publico/pagina-maestra/menu-lateral/menu
 import { InicioComponent } from './publico/inicio/inicio.component';
 import { RutaNoEncontradaComponent } from './publico/errores/ruta-no-encontrada/ruta-no-encontrada.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponentComponent } from './publico/spinner-component/spinner-component.component';
+
+
 
 
 @NgModule({
@@ -19,12 +22,14 @@ import { HttpClientModule } from '@angular/common/http';
     MenuLateralComponent,
     InicioComponent,
     RutaNoEncontradaComponent,
-    
+    SpinnerComponentComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

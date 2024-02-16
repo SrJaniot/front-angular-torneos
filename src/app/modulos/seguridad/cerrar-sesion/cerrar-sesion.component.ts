@@ -19,7 +19,7 @@ export class CerrarSesionComponent {
   }
   CerrarSesion() {
     this.servicioSeguridad.RemoverDatosUsuarioValidado();
-    this.router.navigateByUrl('');
+    window.location.href = '';
 
   }
 

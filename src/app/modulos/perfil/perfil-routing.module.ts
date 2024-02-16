@@ -4,7 +4,7 @@ import { VerPerfilComponent } from './ver-perfil/ver-perfil.component';
 
 const routes: Routes = [
   {
-    path:'perfil',
+    path:'perfil/:id',
     component :VerPerfilComponent
   }
 ];

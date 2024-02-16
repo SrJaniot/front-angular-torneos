@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad&family=Roboto:wght@100&display=swap');
 
 
+
 * {
   margin: 0;
   padding: 0;
@@ -26,7 +27,7 @@ li {
   --press: 'Press Start 2P', cursive;
   --roboto: 'Roboto', sans-serif;
   --afacad: 'Afacad', sans-serif;
-  
+
 
   --light: #F9F9F9;
   --blue: #3C91E6;
@@ -40,6 +41,23 @@ li {
   --orange: #FD7238;
   --light-orange: #FFE0D3;
   --purple: #9e51e6;
+
+
+
+
+/* css del perfil */
+--backgroundimg: url(https://img.nickpic.host/lkOMcQ.jpg);
+--background: #5f84a1;
+--background2: #dbecf4;
+--background3: #4c708e;
+--accentfont: 'Afacad', sans-serif;
+--accentfont2: 'elgista';
+--font1: 'Afacad', sans-serif;
+--accent: #76c5c0;
+--text1: #0d1e2b;
+--text2: #9bbdd9;
+--text3: #fff;
+--border1: #cbdeed;
 }
 
 html {
@@ -52,8 +70,10 @@ body.dark {
   --dark: #FBFBFB;
 }
 
+/* BODY GENERAL */
+
 body {
-  background: var(--grey);
+  background: #000000;
   overflow-x: hidden;
 }
 
@@ -601,3 +621,14 @@ body {
     min-width: 420px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+

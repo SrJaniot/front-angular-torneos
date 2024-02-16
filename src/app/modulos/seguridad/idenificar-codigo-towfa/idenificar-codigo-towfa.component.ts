@@ -64,8 +64,7 @@ export class IdenificarCodigoTowfaComponent {
           console.log(response);
           //alert('Usuario identificado');
           this.servicioSeguridad.AlmacenarDatosUsuarioIdentificadoSESION(response);
-          this.router.navigateByUrl('/noticias/home');
-
+          window.location.href = '/noticias/home';
 
 
           //console.log(response.DATOS);
