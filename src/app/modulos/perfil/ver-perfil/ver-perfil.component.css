@@ -1,11 +1,18 @@
 
 
 @font-face {
-  font-family: 'Elgista';
-  src:  url('https://files.jcink.net/uploads2/mago/Elgista.woff') format('woff');
+  font-family: 'Afacad';
+  src: url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+@font-face {
+font-family: 'Elgista';
+src:  url('https://files.jcink.net/uploads2/mago/Elgista.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
 }
 
 body {
@@ -18,16 +25,17 @@ background-size: cover;
 background-repeat: no-repeat;
 background-blend-mode:multiply;
 --backgroundimg: url(https://img.nickpic.host/lkOMcQ.jpg);
---background: #5f84a1;
---background2: #dbecf4;
---background3: #4c708e;
---accentfont: 'elgista';
---font1: input-sans, sans-serif;
---accent: #76c5c0;
---text1: #0d1e2b;
---text2: #9bbdd9;
+background: #000;
+--background2: #fff;
+--background3: #330066;
+--accentfont: 'Elgista';
+font-family: 'Afacad';
+--accent: #000;
+--text1: #fff;
+--text2: #000;
 --text3: #fff;
---border1: #cbdeed;
+--text4: #fff;
+--border1: #fff;
 }
 
 * {box-sizing:border-box;}
@@ -46,6 +54,7 @@ transition: 0.5s ease-in-out;
 .profile-wrap {
 min-width: 950px;
 max-width: 1250px;
+font-family: 'Afacad';
 margin: 50px auto;
 background: var(--background);
 min-height: 200px;
@@ -68,6 +77,7 @@ height: 200px;
 object-fit: cover;
 border-radius: 10px 10px 0px 0px;
 }
+/* PERFIL AVATAR */
 
 .profile-avatar {
 grid-column: 1 / 2;
@@ -87,11 +97,33 @@ left: 120px;
 top: -80px;
 }
 
-.profile-avatar img {
+/*.profile-avatar img {
 width: 150px;
 height: 150px;
 border-radius: 100%;
 object-fit: cover;
+}*/
+.profile-avatar, .icon-container {
+width: 150px; /* Ajusta el tamaño según sea necesario */
+height: 150px; /* Ajusta el tamaño según sea necesario */
+border-radius: 50%;
+object-fit: cover;
+display: flex; /* Habilita flexbox */
+justify-content: center; /* Centra el contenido horizontalmente */
+align-items: center; /* Centra el contenido verticalmente */
+}
+
+.profile-avatar label img {
+width: 50px;
+height: 50px;
+/* Agrega aquí más estilos según sea necesario */
+}
+
+.icon {
+border-radius: 15%; /* Esto hace que la imagen sea redonda */
+width: 50px; /* Ajusta el tamaño según sea necesario */
+height: 50px; /* Ajusta el tamaño según sea necesario */
+object-fit: cover; /* Esto asegura que la imagen cubra completamente el círculo */
 }
 
 .profile-name {
@@ -108,7 +140,7 @@ border-radius: 0px 0px 0px 10px;
 }
 
 .profile-name a {
-font: 700 80px var(--accentfont2);
+font: 700 80px var(--accentfont);
 white-space: pre;
 color: var(--border1);
 text-transform: uppercase;
@@ -119,13 +151,14 @@ text-align: justify;
 
 .profile-fields {
 grid-column: 2 / 5;
-grid-row: 2 /5 ;
+grid-row: 2 / 5;
 background: var(--background3);
 margin: 0;
 padding: 50px;
 display: flex;
 flex-flow: row wrap;
 justify-content: space-between;
+
 }
 
 .profile-fields span {
@@ -138,8 +171,8 @@ color: var(--text1);
 .profile-fields span div {
 display: block;
 text-transform: uppercase;
-font: 400 18px var(--accentfont);
-color: var(--accent);
+font: 400 18px var(--font1);
+color: var(--text1);
 border-bottom: 2px solid var(--border1);
 padding: 5px 0px;
 margin-bottom: 15px;
@@ -157,9 +190,9 @@ padding: 60px;
 
 .freeform-warn {
 width: 50%;
-padding: 15px;
+
 margin: 20px auto 50px auto;
-/*background: var(--background);*/
+background: var(--background);
 font: 400 14px var(--font1);
 border-radius: 10px;
 color: var(--text2);
@@ -180,6 +213,8 @@ text-align: justify;
 font: 400 14px var(--font1);
 line-height: 150%;
 padding: 20px;
+background: #fff;
+font-family: 'Afacad';
 }
 
 .freeform-content:first-letter {

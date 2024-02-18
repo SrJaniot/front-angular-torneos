@@ -45,19 +45,23 @@ li {
 
 
 
+
 /* css del perfil */
---backgroundimg: url(https://img.nickpic.host/lkOMcQ.jpg);
---background: #5f84a1;
---background2: #dbecf4;
---background3: #4c708e;
---accentfont: 'Afacad', sans-serif;
---accentfont2: 'elgista';
---font1: 'Afacad', sans-serif;
---accent: #76c5c0;
---text1: #0d1e2b;
---text2: #9bbdd9;
+
+
+--background2: #fff;
+--background3: #330066;
+--accentfont: 'Elgista';
+--accent: #000;
+--text1: #fff;
+--text2: #000;
 --text3: #fff;
---border1: #cbdeed;
+--text4: #fff;
+--border1: #fff;
+
+
+
+
 }
 
 html {

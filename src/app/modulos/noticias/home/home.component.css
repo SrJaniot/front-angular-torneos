@@ -1768,18 +1768,18 @@ ul > li {
 }
 
 .details h3 {
-	/*font-size: 1.8rem;*/
+	font-size: 1.8rem;
 	font-family: "Afacad";
 	/*color: #1c3961;*/
 }
 
 .details p {
-	/*font-size: 1.4rem;*/
+	font-size: 1.3rem;
 	font-family: "Afacad";
 	/*color: #585858;*/
 	/*margin-top: 1.7857em;*/
-	margin-top: 1.4285em;
-	margin-bottom: 1.4285em;
+	margin-top: 0.4285em;
+	margin-bottom: 0.4285em;
 }
 /*========What other say section ============*/
 
@@ -4012,9 +4012,8 @@ RESPONSIVE STYLESHEET
 
 
 
+.details{
+  background-color: #11c3f6;
+}
 
 /*---inner-page-style.css---*/
-
-
-
-
