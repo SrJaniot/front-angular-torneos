@@ -13,19 +13,17 @@
     <img id="preview" src="" alt="Vista previa de la imagen" class="profile-avatar" style="display: none;">
 
   <div class="profile-name">
-    <a href="?">Señor Janiot</a>
+    <a href="?">{{nickname_jugador}}</a>
   </div>
 
   <div class="profile-fields">
 
-    <span><div>op.gg</div>Estebandido</span>
-    <span><div>Elo</div>Platinoob</span>
-    <span><div>Equipo</div>Mancos development</span>
-    <span><div>Juego</div>Está obligado</span>
-    <span><div>Le gusta lolsito?</div>Está obligado</span>
+    <span><div>op.gg</div><a href="{{link_cuenta_jugador}}" target="_blank"><b class="nickname-color">{{nickname_jugador}}</b></a></span>
+    <span><div>Liga</div>{{liga_jugador}}</span>
+    <span><div>Equipo</div><a href="{{link_perfil_equipo}}" target="_blank"><b class="nickname-color">{{nom_equipo}}</b></a></span>
+    <span><div>Troll?</div>{{troll}}</span>
 
-    <span><div>Línea</div>Jungla (para que lo culpen luego)</span>
-    <span><div>Sexo</div>Hombre</span>
+    <span><div>Sexo</div>{{sexo}}</span>
 
   </div>
 
@@ -34,11 +32,7 @@
     <div class="freeform-warn" align="center"> <h1> Sobre mi </h1></div>
 
     <div class="freeform-content">
-    Pura palabrería acá no más para ver como puedo cambiar solamente la letra que necesito cambiar porque no necesito cambiar otra cosa Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quae, id incidunt blanditiis voluptatum dignissimos corporis odio, iste repudiandae velit laboriosam. Debitis quae rem cum odio corporis dolore qui ipsum!
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur molestiae praesentium nulla odit deleniti id? Dignissimos mollitia dolorum ipsa minima facilis nesciunt velit sint architecto deserunt, placeat ipsam cum optio!
-
-    Pura palabrería acá no más para ver como puedo cambiar solamente la letra que necesito cambiar porque no necesito cambiar otra cosa Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem quae, id incidunt blanditiis voluptatum dignissimos corporis odio, iste repudiandae velit laboriosam. Debitis quae rem cum odio corporis dolore qui ipsum!
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur molestiae praesentium nulla odit deleniti id? Dignissimos mollitia dolorum ipsa minima facilis nesciunt velit sint architecto deserunt, placeat ipsam cum optio!
+      {{displayedText}}
     </div>
   </div>
 
