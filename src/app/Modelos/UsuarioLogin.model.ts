@@ -5,4 +5,5 @@ export class UsuarioLogin {
   nombre?: string;
   rolId?: string;
   _id?: string;
+  idPostgres?: string; // id de la base de datos de postgres
 }

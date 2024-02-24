@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { VerPerfilComponent } from './ver-perfil/ver-perfil.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import { VerPerfilComponent } from './ver-perfil/ver-perfil.component';
   ],
   imports: [
     CommonModule,
-    PerfilRoutingModule
+    PerfilRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class PerfilModule { }

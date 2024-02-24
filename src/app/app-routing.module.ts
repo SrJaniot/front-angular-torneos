@@ -26,6 +26,12 @@ const routes: Routes = [
     path:'noticias',
     loadChildren: () => import('./modulos/noticias/noticias.module').then(m => m.NoticiasModule)
   },
+  {
+    path:'equipo',
+    loadChildren: () => import('./modulos/equipo/equipo.module').then(m => m.EquipoModule)
+
+
+  },
 
 
   // RUTA NO ENCONTRADA TIENE QUE SER EL ULTIMO

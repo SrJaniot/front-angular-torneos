@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'Torneos';
   status = true;
   sesionActiva= false;
+  id_postgres: string = "";
 
   constructor(
     private servicioSeguridad: SeguridadService
@@ -22,6 +23,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.ValidarSesionActiva();
+    //console.log(this.sesionActiva)
   }
 
   ValidarSesionActiva() {
@@ -29,6 +31,7 @@ export class AppComponent {
       next: (datos:UsuarioValidadoModel) => {
         if (datos.token!= "") {
           this.sesionActiva = true;
+          this.id_postgres = datos.usuario?.idPostgres!;
 
         }else{
           this.sesionActiva = false;

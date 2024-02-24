@@ -1,16 +1,26 @@
 
-<div class="profile-wrap">
+<div  class="profile-wrap">
   <div class="profile-bg">
     <img src="https://i.postimg.cc/5yDfk1KN/nojao1.png">
     </div>
 
     <div class="profile-avatar">
-      <input type="file" id="avatar" name="avatar" style="display: none;">
+
+      <form [formGroup]="cargaArchivoFG">
+      <input *ngIf="DuenoDelPerfil" (change)="CuandoSeleccionaArchivo($event)" type="file" class="edit-button" name="avatar" >
       <label for="avatar" class="icon-container">
-        <img src="https://i.postimg.cc/HxpXN1Jd/upload2.png" alt="Subir archivo" class="icon">
       </label>
+      </form>
     </div>
-    <img id="preview" src="" alt="Vista previa de la imagen" class="profile-avatar" style="display: none;">
+      <!-- Si foto_perfil=='sinfoto.jpg' y DuenoDelPerfil es falso, muestra esta imagen -->
+      <img *ngIf="foto_perfil=='sinfoto.jpg'; else SecondCondition" src="../../../../assets/img/foto de perfil.png" alt="Subir archivo" class="profile-avatar" (click)="openDialog('../../../../assets/img/foto de perfil.png')">
+
+      <!-- Si ninguna de las condiciones anteriores se cumple, muestra esta imagen -->
+      <ng-template #SecondCondition>
+        <img src="http://localhost:3001/ObtenerArchivo/1/{{foto_perfil}}" alt="Subir archivo" class="profile-avatar" (click)="openDialog('http://localhost:3001/ObtenerArchivo/1/' + foto_perfil)">
+      </ng-template>
+
+
 
   <div class="profile-name">
     <a href="?">{{nickname_jugador}}</a>
@@ -20,7 +30,15 @@
 
     <span><div>op.gg</div><a href="{{link_cuenta_jugador}}" target="_blank"><b class="nickname-color">{{nickname_jugador}}</b></a></span>
     <span><div>Liga</div>{{liga_jugador}}</span>
-    <span><div>Equipo</div><a href="{{link_perfil_equipo}}" target="_blank"><b class="nickname-color">{{nom_equipo}}</b></a></span>
+
+    <span>
+      <div>Equipo</div>
+
+      <button (click)="RouteCrearEquipo()" *ngIf="DuenoDelPerfil && nom_equipo == null" class="submit action-button">Crear equipo</button>
+      <a *ngIf="nom_equipo != null" href="{{link_perfil_equipo}}" target="_blank"><b class="nickname-color">{{nom_equipo}}</b></a>
+
+    </span>
+
     <span><div>Troll?</div>{{troll}}</span>
 
     <span><div>Sexo</div>{{sexo}}</span>

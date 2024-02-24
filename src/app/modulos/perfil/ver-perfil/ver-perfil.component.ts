@@ -2,6 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PerfilService } from '../../../servicios/perfil.service';
 import { RespuestaServerPerfilUsuario } from '../../../Modelos/RespuestaServer.PerfilUsuario.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
+import { SeguridadService } from '../../../servicios/seguridad.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDataExampleDialogComponent } from '../../../publico/dialog-data-example-dialog/dialog-data-example-dialog.component'; ;
+
+
 
 @Component({
   selector: 'app-ver-perfil',
@@ -35,15 +43,25 @@ export class VerPerfilComponent {
   speed = 10; // Ajusta la velocidad de la "escritura"
 
 
+  //cargar archivos
+  nombreArchivoCargado: String = '';
+  cargaArchivoFG: FormGroup = new FormGroup({});
+  archivoCargado: Boolean = false;
+
+  //logica de las fotos
+  DuenoDelPerfil: boolean = false;
 
 
 
 
 
   constructor(
+    private fb: FormBuilder,
     private perfilService: PerfilService,
+    private seguridadService: SeguridadService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
   ) { }
 
   /**
@@ -56,7 +74,7 @@ export class VerPerfilComponent {
     //lista de respuestas aleatorias para Sexo
     const lista_sexo = ['Mucho', 'Poco', 'Nunca', 'Siempre 😏', 'A veces', 'Casi siempre', 'Casi nunca', 'Regularmente', 'Raravez', 'Frecuentemente 😏', 'Ocasionalmente', 'Continuamente', 'Si 😏', 'Esporádicamente', 'Ayer', 'Mañana 😏', 'No', 'Rara veces'];
     //lista de respuestas aleatorias para Troll
-    const lista_troll = ['Juega teemo ad', 'Se afk', 'Flamea', '0/15 al minuto 10', 'Se rinde', 'No ayuda','gg report jg','Tranquilos, soy smurf'];
+    const lista_troll = ['Juega teemo ad', 'Se va afk', 'Flamea', '0/15 al minuto 10', 'Se rinde', 'No ayuda','gg report jg','Tranquilos, soy smurf'];
     //contenido sobre mi
     const lista_sobre_mi = [
       '¡Hola! Soy un apasionado de League of Legends, siempre buscando destacar en la grieta del invocador con mi juego estratégico y mi sentido del humor a veces un poco ácido. Sé que puedo ser un poco intenso en mis comentarios, ¡pero es solo porque estoy tan comprometido con la victoria! Aunque suene cliché, siempre tengo en mente encontrar a alguien que comparta mi pasión por el juego, aunque admito que en ocasiones subestimo el potencial de las mujeres en el juego. Pero ¿quién sabe? Tal vez en una de estas partidas, encuentre a alguien que me haga cambiar de opinión y conquiste mi corazón tanto como mi liga.',
@@ -65,9 +83,6 @@ export class VerPerfilComponent {
        '¡Saludos, invocadores! Soy ese jugador de League of Legends que nunca se queda callado, tanto dentro como fuera de la grieta del invocador. Siempre tengo una opinión sobre todo y no me detengo en expresarla, ya sea criticando las elecciones de campeones de mis compañeros de equipo o burlándome de los errores del enemigo. No puedo evitar soltar comentarios del tipo "¿En serio, una mujer en el equipo? Ahí está el problema" o "¡No, no, no, eso no es cómo se juega esa línea, niña!" No, lo hago con malas intenciones, ¡solo quiero ganar y  se me escapan las palabras! A pesar de todo, soy un compañero leal y estoy siempre buscando mejorar y ganar, así que prepárate para algunas risas y tal vez algunos roces en el camino hacia la victoria.',
        '¡Hola, comunidad de League of Legends! Soy ese jugador que nunca se cansa de expresar su opinión, ya sea durante la partida o después de ella. Siempre estoy rápido para señalar los errores de mis compañeros de equipo y no me detengo en enviarles algunos mensajes después de la partida para recordárselos. ¿Por qué? Porque no solo soy un jugador exigente, ¡sino también un ganador insaciable! Después de una partida, es probable que te encuentres con una solicitud de amistad de mi parte, solo para que pueda flamearte y humillarte aún más por tu mal desempeño. Y por supuesto, no puedo evitar desafiarte a un 1 vs 1 para demostrarte quién manda realmente en la grieta del invocador. Pero te advierto, suelo terminar humillado, ¡así que prepárate para una buena dosis de humildad!'
       ]
-
-
-
 
     let datos=this.perfilService.ObtenerPerfil(id).subscribe(
       (respuesta:RespuestaServerPerfilUsuario)=>{
@@ -82,6 +97,12 @@ export class VerPerfilComponent {
           this.text = lista_sobre_mi[Math.floor(Math.random() * lista_sobre_mi.length)];
           this.typeWriter();
 
+          //construir el formulario de carga de archivos
+          this.ConstruirFormularioArchivo();
+          if (id == this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres) {
+            this.DuenoDelPerfil = true;
+          }
+
 
         }
         else{
@@ -91,6 +112,71 @@ export class VerPerfilComponent {
         }
     );
   }
+
+    /** Carga de archivo */
+
+    ConstruirFormularioArchivo() {
+      this.cargaArchivoFG = this.fb.group({
+        archivo: ['', []]
+      });
+    }
+
+    get obtenerFgArchivo() {
+      return this.cargaArchivoFG.controls;
+    }
+
+    CargarArchivo() {
+      const formData = new FormData();
+      formData.append('file', this.cargaArchivoFG.controls["archivo"].value);
+      this.perfilService.CargarArchivoFotoUsuario(formData).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          this.nombreArchivoCargado = data.file;
+          //this.obtenerFgDatos["foto"].setValue(this.nombreArchivoCargado);
+          let nombredelarchivo = this.nombreArchivoCargado;
+          //console.log(nombredelarchivo);
+          let id_jugador = this.id_jugador;
+          console.log(id_jugador);
+          let token = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.token;
+          //console.log(token);
+          this.perfilService.ActualizarFotoPerfilUsuario(id_jugador!, nombredelarchivo, token! ).subscribe({
+            next: (data: RespuestaServer) => {
+              if (data.CODIGO == 200) {
+                alert(data.MENSAJE);
+                location.reload();
+
+              }else if (data.CODIGO == 401) {
+                alert(data.MENSAJE);
+
+              }
+
+            },
+            error: (err: any) => {
+              console.log(err);
+            }
+          });
+
+          this.archivoCargado = true;
+          alert("Archivo cargado correctamente.");
+        },
+        error: (err: any) => {
+          alert("Error cargando el archivo formato no valido o archivo muy pesado.");
+        }
+      });
+    }
+
+    CuandoSeleccionaArchivo(event: any) {
+      if (event.target.files.length > 0) {
+        const f = event.target.files[0];
+        this.obtenerFgArchivo["archivo"].setValue(f);
+        //console.log(f);
+        this.CargarArchivo();
+      }
+    }
+
+
+
+
 
   CapturarParametrosHtml(datos: RespuestaServerPerfilUsuario) {
     //capturar los parametros del html
@@ -105,6 +191,7 @@ export class VerPerfilComponent {
     this.nickname_jugador = datos?.DATOS?.[0]?.fun_get_jugador_id_perfil?.nickname_jugador;
     this.nom_equipo = datos?.DATOS?.[0]?.fun_get_jugador_id_perfil?.nom_equipo;
     this.id_equipo = datos?.DATOS?.[0]?.fun_get_jugador_id_perfil?.id_equipo;
+    //console.log(this.nom_equipo)
 
     if (this.id_equipo != null) {
       this.link_perfil_equipo = "/perfil/perfil-equipo/" + this.id_equipo;
@@ -122,5 +209,30 @@ export class VerPerfilComponent {
 
 
 
+  RouteCrearEquipo() {
+    this.router.navigate(['/equipo/crear-equipo']);
+  }
+
+
+  openDialog(imageSrc: string) {
+    const dialogRef = this.dialog.open(DialogDataExampleDialogComponent, {
+      data: {
+        img: imageSrc
+      }
+    });
+
+    document.body.classList.add('dialog-open');
+
+    dialogRef.afterClosed().subscribe(() => {
+      document.body.classList.remove('dialog-open');
+    });
+  }
+
 
 }
+
+
+
+
+
+

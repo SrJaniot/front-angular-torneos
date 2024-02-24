@@ -1,0 +1,7 @@
+.large-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 1000;
+}
+

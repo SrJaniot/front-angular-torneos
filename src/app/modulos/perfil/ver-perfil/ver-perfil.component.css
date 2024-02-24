@@ -95,6 +95,29 @@ justify-content: center;
 position: relative;
 left: 120px;
 top: -80px;
+background-color: black;
+}
+
+.edit-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-image: url('https://i.postimg.cc/qMSsgBH0/upload4.png'); /* Cambia esto a la ruta de tu imagen */
+  background-size: cover; /* Esto hará que la imagen cubra todo el botón */
+  background-position: center; /* Esto centrará la imagen en el botón */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-indent: 100%; /* Esto mueve el texto fuera de la vista */
+  white-space: nowrap; /* Esto evita que el texto se envuelva a la siguiente línea */
+  overflow: hidden; /* Esto oculta cualquier texto que se desborde */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Opcional: agrega una sombra para darle profundidad */
+  z-index: 1;
 }
 
 /*.profile-avatar img {
@@ -304,3 +327,27 @@ color: var(--text2);
 .animated-text {
   animation: textAppear 2s ease-in-out;
 }
+
+.full-size {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.action-button {
+  width: 100px;
+  background: #FF9933 ;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-family: "Afacad";
+}
+.action-button:hover, .action-button:focus {
+  box-shadow: 0 0 0 2px white;
+}
+

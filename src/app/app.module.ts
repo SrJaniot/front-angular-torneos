@@ -10,6 +10,9 @@ import { InicioComponent } from './publico/inicio/inicio.component';
 import { RutaNoEncontradaComponent } from './publico/errores/ruta-no-encontrada/ruta-no-encontrada.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponentComponent } from './publico/spinner-component/spinner-component.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { DialogDataExampleDialogComponent } from './publico/dialog-data-example-dialog/dialog-data-example-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -23,15 +26,20 @@ import { SpinnerComponentComponent } from './publico/spinner-component/spinner-c
     InicioComponent,
     RutaNoEncontradaComponent,
     SpinnerComponentComponent,
+    DialogDataExampleDialogComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync('noop'),
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
