@@ -1,3 +1,45 @@
-<div @slideFadeAnimation>
-  <h2>Hola, bienvenido a mi perfil!</h2>
+<div id="msform">
+<mat-stepper [linear]="isLinear" #stepper>
+
+
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>¡NOMBRE!</ng-template>
+      <form [formGroup]="firstFormGroup">
+      <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
+      <h3 class="fs-subtitle">Paso 1: ¡Empieza por un nombre y una foto! </h3>
+      <input  type="text" name="team" placeholder="Nombre equipo" formControlName="NombreEquipo" required />
+      <div class="form-group">
+        <input type="file" id="imageUpload" accept="image/*" formControlName="FotoEquipo" required>
+      </div>
+        <div>
+          <button class="next action-button" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup" >
+      <ng-template matStepLabel>¡DESCRIPCIÓN!</ng-template>
+      <form [formGroup]="secondFormGroup">
+
+        <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
+        <h3 class="fs-subtitle">Paso 2: Dale una descripción </h3>
+        <textarea name="description" placeholder="Descripción" rows="10" cols="50"></textarea>
+
+
+        <div>
+          <button class="next action-button" mat-button matStepperPrevious>Back</button>
+          <button class="next action-button" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>
