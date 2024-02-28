@@ -8,11 +8,13 @@
       <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
       <h3 class="fs-subtitle">Paso 1: ¡Empieza por un nombre y una foto! </h3>
       <input  type="text" name="team" placeholder="Nombre equipo" formControlName="NombreEquipo" required />
-      <div class="form-group">
-        <input type="file" id="imageUpload" accept="image/*" formControlName="FotoEquipo" required>
-      </div>
+      <form [formGroup]="cargaArchivoFG">
+        <div class="form-group">
+          <input (change)="CuandoSeleccionaArchivo($event)" type="file" id="imageUpload" accept="image/*"  >
+        </div>
+      </form>
         <div>
-          <button class="next action-button" mat-button matStepperNext>Next</button>
+          <button class="next action-button" mat-button matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>
@@ -24,22 +26,27 @@
 
         <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
         <h3 class="fs-subtitle">Paso 2: Dale una descripción </h3>
-        <textarea name="description" placeholder="Descripción" rows="10" cols="50"></textarea>
+        <textarea formControlName="Descripcion" required name="description" placeholder="Descripción" rows="10" cols="50"></textarea>
 
 
         <div>
-          <button class="next action-button" mat-button matStepperPrevious>Back</button>
-          <button class="next action-button" mat-button matStepperNext>Next</button>
+          <button class="next action-button" mat-button matStepperPrevious>Atrás</button>
+          <button class="next action-button" mat-button matStepperNext>Siguiente</button>
         </div>
       </form>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>¡COMPARTE!</ng-template>
+        <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
+        <h3 class="fs-subtitle">Paso 3: ¡Escoge a tus compañeros!</h3>
+        <input formControlName="InvitacionCorreo1" type="text" name="email" placeholder="Email jugador 1  (opcional)"  />
+        <input formControlName="InvitacionCorreo2" type="text" name="email" placeholder="Email jugador 2  (opcional)"   />
+        <input formControlName="InvitacionCorreo3" type="text" name="email" placeholder="Email jugador 3  (opcional)" />
+        <input formControlName="InvitacionCorreo4" type="text" name="email" placeholder="Email jugador 4  (opcional)" />
+        <button class="next action-button" mat-button matStepperPrevious>Atrás</button>
+        <button (click)="EnviarFormulario()" class="next action-button" >Crear</button>
+      </form>
     </mat-step>
   </mat-stepper>
 </div>
