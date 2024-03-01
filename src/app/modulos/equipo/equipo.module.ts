@@ -8,11 +8,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ValidarInvitacionEquipoComponent } from './validar-invitacion-equipo/validar-invitacion-equipo.component';
 
 
 @NgModule({
   declarations: [
-    CrearEquipoComponent
+    CrearEquipoComponent,
+    ValidarInvitacionEquipoComponent
   ],
   imports: [
     CommonModule,

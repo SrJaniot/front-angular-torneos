@@ -165,8 +165,37 @@ export class CrearEquipoComponent {
           //console.log(idEquipo);
           //console.log(hashEquipo);
 
+
           //PENDIENTE CREAR LA LOGICA DE INVITACIONES DE CORREO Y LINK DE INVITACION -----------------------------------------------------------------------
-          
+          //TOMAR LOS CORREOS DE LOS INVITADOS Y ENVIARLES UN CORREO CON EL LINK DE INVITACION siempre y cuando el campo no este vacio
+          let correo1= this.thirdFormGroup.controls["InvitacionCorreo1"].value;
+          let correo2= this.thirdFormGroup.controls["InvitacionCorreo2"].value;
+          let correo3= this.thirdFormGroup.controls["InvitacionCorreo3"].value;
+          let correo4= this.thirdFormGroup.controls["InvitacionCorreo4"].value;
+
+          //envia el correo a los invitados que no esten vacios
+          if(correo1 != ""){
+            //console.log(correo1);
+            //enviar correo
+            //this.EquipoService.EnviarCorreoInvitacion(correo1, idEquipo, hashEquipo);
+          }
+          if(correo2 != ""){
+            //console.log(correo2);
+            //enviar correo
+            //this.EquipoService.EnviarCorreoInvitacion(correo2, idEquipo, hashEquipo);
+          }
+          if(correo3 != ""){
+            //console.log(correo3);
+            //enviar correo
+            //this.EquipoService.EnviarCorreoInvitacion(correo3, idEquipo, hashEquipo);
+          }
+          if(correo4 != ""){
+            //console.log(correo4);
+            //enviar correo
+            //this.EquipoService.EnviarCorreoInvitacion(correo4, idEquipo, hashEquipo);
+          }
+
+
 
 
         }else{
