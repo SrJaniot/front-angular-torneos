@@ -5,6 +5,8 @@ import { EquipoService } from '../../../servicios/equipo.service';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
 import { RespuestaServerCrearEquipo } from '../../../Modelos/RespuestaServer.CrearEquipo.model';
+import { NotificacionCorreoService } from '../../../servicios/notificacion-correo.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -34,6 +36,8 @@ export class CrearEquipoComponent {
     private fb: FormBuilder,
     private EquipoService: EquipoService,
     private SeguridadService: SeguridadService,
+    private NotificacionCorreoService: NotificacionCorreoService,
+    private router: Router,
 
     ) {
   }
@@ -161,6 +165,7 @@ export class CrearEquipoComponent {
           //console.log(respuesta.DATOS!);
           //capturo el id del equipo y el hash del equipo que viene en la respuesta respuesta.DATOS! como json
           let idEquipo = respuesta.DATOS!.idEquipo;
+          let idEquipoParceadoString = idEquipo!.toString();
           let hashEquipo = respuesta.DATOS!.hashEquipo;
           //console.log(idEquipo);
           //console.log(hashEquipo);
@@ -173,27 +178,64 @@ export class CrearEquipoComponent {
           let correo3= this.thirdFormGroup.controls["InvitacionCorreo3"].value;
           let correo4= this.thirdFormGroup.controls["InvitacionCorreo4"].value;
 
+          let nombreLiderEquipo = this.SeguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
+
           //envia el correo a los invitados que no esten vacios
           if(correo1 != ""){
-            //console.log(correo1);
+            console.log(correo1);
             //enviar correo
+            this.NotificacionCorreoService.EnviarCorreoInvitacionJugador(correo1,"Jugador",idEquipoParceadoString,hashEquipo!,NombreEquipo,nombreLiderEquipo!).subscribe({
+              next: (respuesta:any) => {
+                console.log(respuesta);
+              }
+            });
             //this.EquipoService.EnviarCorreoInvitacion(correo1, idEquipo, hashEquipo);
           }
           if(correo2 != ""){
             //console.log(correo2);
             //enviar correo
+            this.NotificacionCorreoService.EnviarCorreoInvitacionJugador(correo2,"Jugador",idEquipoParceadoString,hashEquipo!,NombreEquipo,nombreLiderEquipo!).subscribe({
+              next: (respuesta:any) => {
+                console.log(respuesta);
+              }
+            });
+
             //this.EquipoService.EnviarCorreoInvitacion(correo2, idEquipo, hashEquipo);
           }
           if(correo3 != ""){
             //console.log(correo3);
             //enviar correo
+            this.NotificacionCorreoService.EnviarCorreoInvitacionJugador(correo3,"Jugador",idEquipoParceadoString,hashEquipo!,NombreEquipo,nombreLiderEquipo!).subscribe({
+              next: (respuesta:any) => {
+                console.log(respuesta);
+              }
+            });
             //this.EquipoService.EnviarCorreoInvitacion(correo3, idEquipo, hashEquipo);
           }
           if(correo4 != ""){
             //console.log(correo4);
             //enviar correo
+            this.NotificacionCorreoService.EnviarCorreoInvitacionJugador(correo4,"Jugador",idEquipoParceadoString,hashEquipo!,NombreEquipo,nombreLiderEquipo!).subscribe({
+              next: (respuesta:any) => {
+                console.log(respuesta);
+              }
+            });
             //this.EquipoService.EnviarCorreoInvitacion(correo4, idEquipo, hashEquipo);
           }
+          //CREA EL LINK DE INVITACION Y LO COPIA AL PORTAPAPELES
+          let linkInvitacion = "http://localhost:4200/equipo/validar-invitacion-equipo/"+idEquipoParceadoString+"/"+hashEquipo;
+          //console.log(linkInvitacion);
+          //copiar al portapapeles
+          navigator.clipboard.writeText(linkInvitacion).then(function() {
+            alert('invitacion copiada al portapapeles');
+
+          }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+          });
+
+          //redirigir a la pagina de inicio
+          this.router.navigate(['/']);
+
 
 
 
