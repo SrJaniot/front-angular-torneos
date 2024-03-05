@@ -34,7 +34,11 @@
       </a>
     </li>
     <li routerLinkActive="active">
-      <a href="#">
+      <a *ngIf="id_equipo != 'NA'" routerLink="/perfil/perfil-equipo/{{id_equipo}}">
+        <i class='bx bxs-group' ></i>
+        <span class="text">Team</span>
+      </a>
+      <a *ngIf="id_equipo == 'NA'" routerLink="/equipo/crear-equipo">
         <i class='bx bxs-group' ></i>
         <span class="text">Team</span>
       </a>

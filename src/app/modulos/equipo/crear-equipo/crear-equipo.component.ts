@@ -261,8 +261,8 @@ export class CrearEquipoComponent {
 
 
   Volverinicio(){
-    this.router.navigate(['/noticias/home']);
-  }
+    window.location.href = '/noticias/home';
+    }
 
   copiarLinkInvitacion() {
     navigator.clipboard.writeText(this.linkInvitacion).then(() => {

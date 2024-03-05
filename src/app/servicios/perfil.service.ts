@@ -61,6 +61,11 @@ export class PerfilService {
   }
 
 
+  ObtenerPerfilEquipo(idEquipo: number){
+    return this.http.get(this.url_ms_negocio + 'obtenerEquipoFULLPorId/' + idEquipo);
+  }
+
+
 
 
 }
