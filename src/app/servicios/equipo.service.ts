@@ -37,6 +37,16 @@ export class EquipoService {
     });
   }
 
+  ValidarHashLinkInvitacionEquipo(id_equi:Number,hash: string,id_juga: Number): Observable<RespuestaServer> {
+    const tokenSesion = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.token;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${tokenSesion}`);
+    return this.http.post(`${this.url_ms_negocio}vincularJugadorEquipo`, {
+      id_Equipo: id_equi,
+      Hash_Equipo: hash,
+      Id_jugador: id_juga
+    }, { headers: headers});
+  }
+
 
 
 

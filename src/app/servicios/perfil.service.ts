@@ -29,6 +29,12 @@ export class PerfilService {
     return this.http.get(this.url_ms_negocio + 'ObtenerJugador/' + id);
   }
 
+  async ObtenerPerfil2(id: number) {
+    return await this.http.get(this.url_ms_negocio + 'ObtenerJugador/' + id).toPromise();
+  }
+
+
+
   /**
    * metodo para guardar la foto de perfil del usuario en la carpeta Archivos/fotosPerfil
    * @param formData

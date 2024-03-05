@@ -24,6 +24,9 @@ export class CrearEquipoComponent {
   thirdFormGroup: FormGroup = new FormGroup({});
   archivoCargado: Boolean = false;
 
+  linkInvitacion: string = '';
+  creoEquipo: Boolean = false;
+
 
 
 
@@ -182,7 +185,7 @@ export class CrearEquipoComponent {
 
           //envia el correo a los invitados que no esten vacios
           if(correo1 != ""){
-            console.log(correo1);
+            //console.log(correo1);
             //enviar correo
             this.NotificacionCorreoService.EnviarCorreoInvitacionJugador(correo1,"Jugador",idEquipoParceadoString,hashEquipo!,NombreEquipo,nombreLiderEquipo!).subscribe({
               next: (respuesta:any) => {
@@ -223,22 +226,22 @@ export class CrearEquipoComponent {
             //this.EquipoService.EnviarCorreoInvitacion(correo4, idEquipo, hashEquipo);
           }
           //CREA EL LINK DE INVITACION Y LO COPIA AL PORTAPAPELES
-          let linkInvitacion = "http://localhost:4200/equipo/validar-invitacion-equipo/"+idEquipoParceadoString+"/"+hashEquipo;
+           this.linkInvitacion = "http://localhost:4200/equipo/validar-invitacion-equipo/"+idEquipoParceadoString+"/"+hashEquipo;
           //console.log(linkInvitacion);
           //copiar al portapapeles
-          navigator.clipboard.writeText(linkInvitacion).then(function() {
-            alert('invitacion copiada al portapapeles');
-
+          navigator.clipboard.writeText(this.linkInvitacion).then(function() {
+            alert('Link de invitacion copiado al portapapeles');
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
           });
 
-          //redirigir a la pagina de inicio
-          this.router.navigate(['/']);
+          this.creoEquipo = true;
+
+          //redirigir a la pagina de inicio si el link fue copiado al portapapeles
 
 
-
-
+          //this.router.navigate(['/']);
+          //pasa al siguiente paso
 
         }else{
           alert('Error al registrar el Equipo');
@@ -256,6 +259,20 @@ export class CrearEquipoComponent {
   }
 
 
+
+  Volverinicio(){
+    this.router.navigate(['/noticias/home']);
+  }
+
+  copiarLinkInvitacion() {
+    navigator.clipboard.writeText(this.linkInvitacion).then(() => {
+      console.log('Async: Copying to clipboard was successful!');
+      // Muestra tu popup aquí
+      alert('Link de invitacion copiado al portapapeles');
+    }, (err) => {
+      console.error('Async: Could not copy text: ', err);
+    });
+  }
 
 
 

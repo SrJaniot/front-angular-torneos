@@ -25,6 +25,7 @@ body {
 	margin: 50px auto;
 	text-align: center;
 	position: relative;
+  
 }
 #msform fieldset {
 	background: white;
@@ -136,4 +137,33 @@ body {
 }
 
 
+.invitation-link {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.invitation-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.invitation-link a:hover {
+  text-decoration: underline;
+}
+
+.invitation-link {
+  width: 100%;
+}
+.invitation-link {
+  display: flex;
+  align-items: center;
+}
+
+.invitation-link mat-form-field {
+  flex-grow: 1;
+}
+
+.invitation-link button {
+  margin-left: 10px;
+}
 

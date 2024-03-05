@@ -9,6 +9,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidarInvitacionEquipoComponent } from './validar-invitacion-equipo/validar-invitacion-equipo.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ValidarInvitacionEquipoComponent } from './validar-invitacion-equipo/va
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule
   ]
 })
 export class EquipoModule { }

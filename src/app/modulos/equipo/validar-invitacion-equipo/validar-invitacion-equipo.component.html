@@ -1,1 +1,5 @@
-<p>validar-invitacion-equipo works!</p>
+<div class="container">
+  <h1 *ngIf="!validado" class="neon-text">Validando invitación <span class="dot" id="dot1">.</span><span class="dot" id="dot2">.</span><span class="dot" id="dot3">.</span></h1>
+  <h1 *ngIf="validado" class="neon-text">Vinculado al equipo</h1>
+  <a *ngIf="validado" routerLink="/noticias/home" class="neon-button">Inicio</a>
+</div>

@@ -1,8 +1,8 @@
 <div id="msform">
-<mat-stepper [linear]="isLinear" #stepper>
+<mat-stepper *ngIf="!creoEquipo" [linear]="isLinear" #stepper>
 
 
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step *ngIf="!creoEquipo" [stepControl]="firstFormGroup">
       <ng-template matStepLabel>¡NOMBRE!</ng-template>
       <form [formGroup]="firstFormGroup">
       <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
@@ -20,7 +20,7 @@
     </mat-step>
 
 
-    <mat-step [stepControl]="secondFormGroup" >
+    <mat-step *ngIf="!creoEquipo" [stepControl]="secondFormGroup" >
       <ng-template matStepLabel>¡DESCRIPCIÓN!</ng-template>
       <form [formGroup]="secondFormGroup">
 
@@ -35,7 +35,7 @@
         </div>
       </form>
     </mat-step>
-    <mat-step>
+    <mat-step *ngIf="!creoEquipo">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>¡COMPARTE!</ng-template>
         <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
@@ -45,8 +45,39 @@
         <input formControlName="InvitacionCorreo3" type="text" name="email" placeholder="Email jugador 3  (opcional)" />
         <input formControlName="InvitacionCorreo4" type="text" name="email" placeholder="Email jugador 4  (opcional)" />
         <button class="next action-button" mat-button matStepperPrevious>Atrás</button>
-        <button (click)="EnviarFormulario()" class="next action-button" >Crear</button>
+        <button   (click)="EnviarFormulario()" mat-button  class="next action-button" >Crear</button>
       </form>
     </mat-step>
+
+
+
+
   </mat-stepper>
+
+  <mat-stepper *ngIf="creoEquipo" [linear]="isLinear" #stepper>
+    <mat-step *ngIf="creoEquipo">
+      <ng-template matStepLabel>¡FIN!</ng-template>
+      <h2 class="fs-title">¡Creemos tu mejor equipo!</h2>
+      <h3 class="fs-subtitle"> ¡EQUIPO CREADO!</h3>
+
+      <div class="invitation-link">
+        <mat-form-field>
+          <input matInput readonly [value]="linkInvitacion">
+        </mat-form-field>
+        <button mat-icon-button (click)="copiarLinkInvitacion()" aria-label="Copy invitation link">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+
+      <button (click)="Volverinicio()" class="next action-button" >inicio</button>
+    </mat-step>
+  </mat-stepper>
+
+
+
+
+
+
+
+
 </div>
