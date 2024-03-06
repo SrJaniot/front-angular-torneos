@@ -35,8 +35,7 @@
       <div>Equipo</div>
 
       <button (click)="RouteCrearEquipo()" *ngIf="DuenoDelPerfil && nom_equipo == null" class="submit action-button">Crear equipo</button>
-      <a *ngIf="nom_equipo != null" href="{{link_perfil_equipo}}" target="_blank"><b class="nickname-color">{{nom_equipo}}</b></a>
-
+      <a *ngIf="nom_equipo != null" href="{{link_perfil_equipo}}"><b class="nickname-color">{{nom_equipo}}</b></a>
     </span>
 
     <span><div>Troll?</div>{{troll}}</span>

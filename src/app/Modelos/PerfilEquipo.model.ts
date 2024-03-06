@@ -11,6 +11,7 @@ export class PerfilEquipo {
     tamanio_equipo?: number;
     lider_equipo?: number;
     numero_torneos_ganados?: number;
+    hash_equipo?: string;
     jugadores?: [ListaJugadores];
   };
 }

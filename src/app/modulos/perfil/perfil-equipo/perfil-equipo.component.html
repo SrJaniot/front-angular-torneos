@@ -15,10 +15,15 @@
 
 
   <div class="container">
-    <div *ngFor="let jugador of jugadoresMostrados; index as i" class="box box-{{i+1}}" style="--img: url('http://localhost:3001/ObtenerArchivo/1/{{jugador.foto_perfil_jugador}}');" attr.data-text="{{jugador.nickname_jugador}}">
+    <div
+      *ngFor="let jugador of jugadoresMostrados; index as i" class="box box-{{i+1}}" style="--img: url('http://localhost:3001/ObtenerArchivo/1/{{jugador.foto_perfil_jugador}}');"  attr.data-text="{{jugador.nickname_jugador}}">
+      <a class="linkperfil" [routerLink]="['/perfil/perfil', jugador.id_jugador]"></a>
     </div>
   </div>
 
+  <div *ngIf="id_sesion==lider_equipo_id" class="button-container">
+    <button class="invite-button" (click)="copyToClipboard()">Invita</button>
+  </div>
 
 
 

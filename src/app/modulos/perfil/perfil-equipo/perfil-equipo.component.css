@@ -35,7 +35,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%; /* Ajusta esto según tus necesidades */
+	border-radius: 50%;
+	overflow: hidden;
+	width: 125px;
+	height: 125px;
+	margin: auto;
+  }
+
+  .equipo img {
+	object-fit: cover;
   }
 
 .container {
@@ -116,5 +124,29 @@
 
 /* PRUEBAS */
 
+.linkperfil{
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff00;
+}
+
+.invite-button {
+  background-color: #FF9933 ; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px; /* Reducido desde 15px 32px */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px; /* Reducido desde 16px */
+  margin: 4px 2px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 100px;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
 
 

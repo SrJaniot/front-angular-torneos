@@ -11,5 +11,6 @@ export class PerfilUsuario {
     nickname_jugador?: string;
     id_equipo?: number;
     nom_equipo?: string;
+    
   };
 }
