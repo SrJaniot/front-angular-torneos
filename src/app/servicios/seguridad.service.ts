@@ -53,7 +53,7 @@ export class SeguridadService {
       edad: edad,
       celular: celular,
       correo: correo,
-      foto_perfil_jugador: "sinfoto.jpg",
+      foto_perfil_jugador: "sinfoto.png",
       id_ciudad: id_ciudad,
       nickname_jugador: nickname_jugador,
       liga_jugador: "SIN LIGA",
