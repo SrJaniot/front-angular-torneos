@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { TorneoService } from '../../../servicios/torneo.service';
+import { RespuestaServerObtenerTorneos } from '../../../Modelos/RespuestaServer.ObtenerTorneos.model';
+import { Router } from '@angular/router';
+import { ObtenerTorneos } from '../../../Modelos/ObtenerTorneos.model';
 declare var $: any;
 
 
@@ -8,6 +12,43 @@ declare var $: any;
   styleUrl: './ver-torenos.component.css'
 })
 export class VerTorenosComponent {
+
+  //variables
+  Lista_Torneos_Activos: ObtenerTorneos[] = [];
+
+  constructor(
+    private servicioTorneo: TorneoService,
+    private Router: Router,
+  ) { }
+
+  //ngoninit
+  ngOnInit(): void {
+
+    let datos = this.servicioTorneo.ObtenerTorneosActivos().subscribe(
+      (respuesta : RespuestaServerObtenerTorneos)=> {
+        if (respuesta.CODIGO == 200) {
+          console.log(respuesta);
+          console.log(this.Lista_Torneos_Activos);
+          this.CapturarParametrosTorneosActivos(respuesta);
+          console.log(this.Lista_Torneos_Activos);
+
+          //console.log(this.nombr_equipo);
+          //console.log(this.ListaJugadores);
+          //console.log(respuesta);
+          //console.log(respuesta.DATOS);
+          //console.log(respuesta.DATOS?.fun_get_equipofull?.jugadores![0]);
+        }
+        else {
+          //this.Router.navigate(['/error404']);
+        }
+      });
+
+
+
+
+
+  }
+
 
 
   ngAfterViewInit() {
@@ -48,7 +89,19 @@ export class VerTorenosComponent {
     // fin de la funcion ngAfterViewInit
   }
 
-  
+  //funcion que captura los datos de torneo activo
+  CapturarParametrosTorneosActivos(datos: RespuestaServerObtenerTorneos) {
+    this.Lista_Torneos_Activos = datos.DATOS!;
+
+  }
+
+
+
+  //funcion que captura los datos de torneo en curso
+
+  //funcion que captura los datos de torneo finalizado
+
+
 
 
 }
