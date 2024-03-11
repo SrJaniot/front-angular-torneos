@@ -10,71 +10,31 @@
 
 		</div>
 		<!-- Popular courses End -->
-		<div class="learn-courses">
-			<div class="container">
-				<div class="courses">
-					<div class="owl-one owl-carousel">
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="cartas">
-								<a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
-								  <div class="card">
-									<div class="wrapper">
-									  <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
-									</div>
-									<img src="../../../../assets/img/Sin título-1.png" class="title" />
-									<img src="https://w7.pngwing.com/pngs/575/149/png-transparent-huni-league-of-legends-champions-korea-smite-2017-league-of-legends-world-championship-league-of-legends-game-video-game-fictional-character.png" class="character" />
-								  </div>
-								</a>
-
-							</div>
-						</div>
-
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="cartas">
-								<a href="https://www.mythrillfiction.com/force-mage" alt="Mythrill" target="_blank">
-								  <div class="card">
-									<div class="wrapper">
-									  <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image" />
-									</div>
-									<img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title" />
-									<img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" />
-								  </div>
-								</a>
-							  </div>
-						</div>
-
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="cartas">
-								<a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
-								  <div class="card">
-									<div class="wrapper">
-									  <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" />
-									</div>
-									<img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="title" />
-									<img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" />
-								  </div>
-								</a>
-
-							</div>
-						</div>
-
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="cartas">
-								<a href="https://www.mythrillfiction.com/force-mage" alt="Mythrill" target="_blank">
-								  <div class="card">
-									<div class="wrapper">
-									  <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image" />
-									</div>
-									<img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title" />
-									<img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" />
-								  </div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="learn-courses">
+      <div class="container">
+        <div class="courses">
+          <div class="owl-one owl-carousel">
+            <!-- El ngFor ahora está dentro del carrusel, para repetir solo los elementos del carrusel -->
+            <div class="box-wrap" *ngFor="let torneo of Lista_Torneos_Activos" itemprop="event" itemscope itemtype="http://schema.org/Course">
+              <div class="cartas">
+                <a [href]="torneo.id_torneo" alt="Mythrill" target="_blank">
+                  <div class="card">
+                    <div class="wrapper">
+                      <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                      <img [src]="'http://localhost:3001/ObtenerArchivo/2/'+torneo.foto_carta_fondo" class="cover-image" />
+                    </div>
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + torneo.foto_carta_titulo" class="title" />
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + torneo.foto_carta_personaje" class="character" />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 		<!-- Learn courses End -->
 		<div class="page-heading">
 			<div class="container">
