@@ -27,7 +27,7 @@ export class TorneoService {
     return this.http.get(`${this.url_ms_negocio}obtenerTorneosEnJuego`);
   }
   ObtenerTorneosFinalizados(): Observable<RespuestaServerObtenerTorneos> {
-    return this.http.get(`${this.url_ms_negocio}obtenerTorneosFinalizados`);
+    return this.http.get(`${this.url_ms_negocio}obtenerTorneosfinalizados`);
   }
 
 

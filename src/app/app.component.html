@@ -11,44 +11,35 @@
     </li>
     <li routerLinkActive="active">
       <a routerLink="/noticias/home">
-        <i class='bx bxs-dashboard' ></i>
-        <span class="text">Dashboard</span>
+        <i class='bx bxs-home' ></i>
+        <span class="text">Inicio</span>
       </a>
     </li>
     <li routerLinkActive="active">
-      <a href="#">
-        <i class='bx bxs-shopping-bag-alt active' ></i>
-        <span class="text">My Store</span>
+      <a routerLink="/torneo/ver-torneos">
+        <i class='bx bxs-trophy ' ></i>
+        <span class="text">Torneos</span>
       </a>
     </li>
-    <li routerLinkActive="active">
-      <a href="#">
-        <i class='bx bxs-doughnut-chart' ></i>
-        <span class="text">Analytics</span>
-      </a>
-    </li>
-    <li routerLinkActive="active">
-      <a href="#">
-        <i class='bx bxs-message-dots' ></i>
-        <span class="text">Message</span>
-      </a>
-    </li>
+
     <li routerLinkActive="active">
       <a *ngIf="id_equipo != 'NA'" routerLink="/perfil/perfil-equipo/{{id_equipo}}">
         <i class='bx bxs-group' ></i>
-        <span class="text">Team</span>
+        <span class="text">Equipo</span>
       </a>
       <a *ngIf="id_equipo == 'NA'" routerLink="/equipo/crear-equipo">
-        <i class='bx bxs-group' ></i>
-        <span class="text">Team</span>
+        <i class='bx bxs-user-plus' ></i>
+        <span class="text">Crear Equipo</span>
       </a>
     </li>
+
     <li routerLinkActive="active">
       <a routerLink="/perfil/perfil/{{id_postgres}}">
         <i class='bx bxs-user' ></i>
         <span class="text">Perfil</span>
       </a>
     </li>
+
   </ul>
   <ul class="side-menu">
     <li>
