@@ -28,7 +28,7 @@
                       <div>
                           <div class="carousel-inner bg-light">
                               <div class="carousel-item active">
-                                  <img class="w-100 h-100" src="https://i.postimg.cc/63zRJSgN/portada.png" alt="Image">
+                                  <img class="w-100 h-100" [src]="'http://localhost:3001/ObtenerArchivo/2/'+foto_torneo" alt="Image">
                               </div>
 
                           </div>
@@ -38,15 +38,13 @@
 
                   <div class="col-lg-7 h-auto mb-30">
                       <div class="h-100 bg-light p-30">
-                          <h3>Friki Fest</h3>
+                          <h3>{{nombre_torneo}}</h3>
                           <div class="d-flex mb-3">
 
                           </div>
-                          <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                              clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                              Nonumy</p>
+                          <p class="mb-4">{{resumen_torneo}}</p>
                               <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/KYtiV4P1BoI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe [src]="video_torneo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                               </div>
 
 
@@ -81,13 +79,12 @@
                           </div>
                           <div class="tab-content">
                             <div class="tab-pane fade show active" *ngIf="activeTab === 'info'">
-                              <h4 class="mb-3">Product Description</h4>
-                                  <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                                  <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                              <h4 class="mb-3">Informacion Torneo</h4>
+                                  <p>{{informacion_general_torneo}}</p>
                               </div>
                               <div class="tab-pane fade show active" *ngIf="activeTab === 'rules'">
-                                <h4 class="mb-3">Additional Information</h4>
-                                  <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                                <h4 class="mb-3">Reglas Toreno</h4>
+                                  <p>{{informacion_reglas_torneo}}</p>
 
                               </div>
 
@@ -112,13 +109,13 @@
                                               <!-- Contenido de la primera imagen aquí -->
 
                                                   <div class="product-img position-relative overflow-hidden">
-                                                      <img class="img-fluid w-100" src="https://i.postimg.cc/8cvxyqZT/images.jpg" alt="">
+                                                      <img class="img-fluid w-100" [src]="'http://localhost:3001/ObtenerArchivo/2/'+foto_premio_1" alt="">
 
                                                   </div>
                                                   <div class="text-center py-4">
                                                       <a class="h6 text-decoration-none text-truncate" href="">Primer lugar</a>
                                                       <div class="d-flex align-items-center justify-content-center mt-2">
-                                                          <h5>$2'000.000 de pesos</h5>
+                                                          <h5>{{descripcion_premio_1}}</h5>
                                                       </div>
 
                                                   </div>
@@ -128,13 +125,13 @@
                                               <!-- Contenido de la segunda imagen aquí -->
 
                                                   <div class="product-img position-relative overflow-hidden">
-                                                      <img class="img-fluid w-100" src="https://i.postimg.cc/8cvxyqZT/images.jpg" alt="">
+                                                      <img class="img-fluid w-100" [src]="'http://localhost:3001/ObtenerArchivo/2/'+foto_premio_2" alt="">
 
                                                   </div>
                                                   <div class="text-center py-4">
                                                       <a class="h6 text-decoration-none text-truncate" href="">Segundo lugar</a>
                                                       <div class="d-flex align-items-center justify-content-center mt-2">
-                                                          <h5>$1'500.000 pesos</h5>
+                                                          <h5>{{descripcion_premio_2}}</h5>
                                                       </div>
 
                                                   </div>
@@ -144,13 +141,13 @@
                                               <!-- Contenido de la tercera imagen aquí -->
 
                                                   <div class="product-img position-relative overflow-hidden">
-                                                      <img class="img-fluid w-100" src="https://i.postimg.cc/8cvxyqZT/images.jpg" alt="">
+                                                      <img class="img-fluid w-100" [src]="'http://localhost:3001/ObtenerArchivo/2/'+foto_premio_3" alt="">
 
                                                   </div>
                                                   <div class="text-center py-4">
                                                       <a class="h6 text-decoration-none text-truncate" href="">Tercer lugar</a>
                                                       <div class="d-flex align-items-center justify-content-center mt-2">
-                                                          <h5>$500.000 pesos</h5>
+                                                          <h5>{{descripcion_premio_3}}</h5>
                                                       </div>
                                                   </div>
 

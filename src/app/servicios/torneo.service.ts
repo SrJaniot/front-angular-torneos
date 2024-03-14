@@ -4,6 +4,7 @@ import { ConfiguracionRutasBackend } from '../config/configuracion.rutas.backend
 import { Observable } from 'rxjs';
 import { SeguridadService } from './seguridad.service';
 import { RespuestaServerObtenerTorneos } from '../Modelos/RespuestaServer.ObtenerTorneos.model';
+import { RespuestaServerObtenerDatosTorneo } from '../Modelos/RespuestaServer.ObtenerDatosTorneo.model';
 
 
 @Injectable({
@@ -28,6 +29,9 @@ export class TorneoService {
   }
   ObtenerTorneosFinalizados(): Observable<RespuestaServerObtenerTorneos> {
     return this.http.get(`${this.url_ms_negocio}obtenerTorneosfinalizados`);
+  }
+  ObtenerDatosTorneo_Id(id_torneo: number): Observable<RespuestaServerObtenerDatosTorneo> {
+    return this.http.get(`${this.url_ms_negocio}obtenerTorneoPorId/${id_torneo}`);
   }
 
 
