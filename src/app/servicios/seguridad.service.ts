@@ -47,7 +47,7 @@ export class SeguridadService {
    * @param clave
    * @returns
    */
-  RegistrarUsuario(nombre: string, edad: number, celular: string, correo: string, id_ciudad: number, nickname_jugador: string, clave:string):Observable <RespuestaServer>{
+  RegistrarUsuario(nombre: string, edad: number, celular: string, correo: string, id_ciudad: number, nickname_jugador: string, clave:string, tipo_documento: number, numero_documento: string):Observable <RespuestaServer>{
     return this.http.post(this.url_ms_seguridad + 'funcion-inserta-usuario-jugador-datos-personales-publico',{
       nombre: nombre,
       edad: edad,
@@ -55,6 +55,8 @@ export class SeguridadService {
       correo: correo,
       foto_perfil_jugador: "sinfoto.png",
       id_ciudad: id_ciudad,
+      id_tipo_documento: tipo_documento,
+      num_documento: numero_documento,
       nickname_jugador: nickname_jugador,
       liga_jugador: "SIN LIGA",
       link_cuenta_jugador: "NO VERIFICADO",

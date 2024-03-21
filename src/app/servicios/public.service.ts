@@ -18,5 +18,9 @@ export class PublicService {
     return this.http.get(this.url_ms_logica+ 'obtenerCiudades');
   }
 
+  TraerTiposDocumentos():Observable <RespuestaServer>{
+    return this.http.get(this.url_ms_logica+ 'obtenerTiposDocumentos');
+  }
+
 
 }

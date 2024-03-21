@@ -4,6 +4,8 @@
 
   <div class="container" id="container" [ngClass]="{'right-panel-active': rightPanelActive}">
     <div class="form-container sign-up-container">
+      <div class="form-scrollable-container">
+
       <form [formGroup]="fGroup2">
         <input formControlName="nombre" type="text" placeholder="Nombre completo" />
         <input formControlName="nickname" type="text" placeholder="Nick name" />
@@ -14,11 +16,26 @@
 
           <!-- Añade más opciones aquí -->
         </select>
-        <input formControlName="email" type="email" placeholder="Email" />
+        <select formControlName="tipo_documento" placeholder="tipo_documento" class="selectinput">
+          <option value="">Selecciona tu tipo de documento</option>
+          <option *ngFor="let tipo_documento of tipos_Documentos" [value]="tipo_documento.id_documento">{{tipo_documento.nom_documento}}</option>
+
+          <!-- Añade más opciones aquí -->
+        </select>
+        <input formControlName="numero_documento" type="text" placeholder="Numero de documento" />
+
         <input formControlName="celular" type="text" placeholder="Celular" />
+
+        <input formControlName="email" type="email" placeholder="Email" />
+
+
+
+
+
         <input formControlName="clave" type="password" placeholder="Contraseña"  />
         <button (click)="EnviarRegister()">Registrate</button>
       </form>
+      </div>
     </div>
     <div class="form-container sign-in-container">
       <form [formGroup]="fGroup">

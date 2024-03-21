@@ -77,6 +77,8 @@ export class DescripcionTorneoComponent {
     this.foto_premio_3= respuesta.DATOS?.foto_premio_torneo_3!;
   }
 
+  //funcion para
+
 
 
 

@@ -19,6 +19,8 @@ export class LoginComponent {
   fGroup: FormGroup= new FormGroup({});
   fGroup2: FormGroup= new FormGroup({});
   ciudades: any[] = [];
+  tipos_Documentos: any[] = [];
+
 
 
   // constructor que me permite inicializar las variables
@@ -43,6 +45,13 @@ export class LoginComponent {
       if(response.CODIGO == 200){
         this.ciudades = response.DATOS!;
         console.log(this.ciudades);
+      }
+    });
+    //llenar el conbobox de tipos de documentos
+    this.servicioPublic.TraerTiposDocumentos().subscribe(response =>{
+      if(response.CODIGO == 200){
+        this.tipos_Documentos = response.DATOS!;
+        console.log(this.tipos_Documentos);
       }
     });
 
@@ -76,6 +85,8 @@ export class LoginComponent {
         email: ['',[Validators.required, Validators.email,]],
         celular: ['',[Validators.required, Validators.pattern('^[0-9]*$')]],
         clave: ['',[Validators.required,]],
+        tipo_documento: ['',[Validators.required,]],
+        numero_documento: ['',[Validators.required,]],
       });
     }
     // funcion que me permite enviar el formulario login
@@ -126,12 +137,16 @@ export class LoginComponent {
       let email = this.fGroup2.controls['email'].value;
       let celular = this.fGroup2.controls['celular'].value;
       let clave = this.fGroup2.controls['clave'].value;
+      let tipo_documento = this.fGroup2.controls['tipo_documento'].value;
+      let numero_documento = this.fGroup2.controls['numero_documento'].value;
       //validar el tipo de dato
       //console.log(typeof(edad));
       //console.log(typeof(ciudad));
       try {
         edad = parseInt(edad);
         ciudad = parseInt(ciudad);
+        tipo_documento = parseInt(tipo_documento);
+
       } catch (error) {
         alert('Error en el tipo de dato');
         return;
@@ -146,7 +161,9 @@ export class LoginComponent {
       //console.log(email);
       //console.log(celular);
       //console.log(clave);
-      this.servicioSeguridad.RegistrarUsuario(nombre,edad,celular,email,ciudad,nickname,clave).subscribe({
+      //console.log(tipo_documento);
+      //console.log(numero_documento);
+      this.servicioSeguridad.RegistrarUsuario(nombre,edad,celular,email,ciudad,nickname,clave,tipo_documento,numero_documento).subscribe({
         next: (respuesta:RespuestaServer) => {
           console.log(respuesta);
           if(respuesta.CODIGO == 200){
