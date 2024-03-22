@@ -22,6 +22,7 @@ export class ObtenerDatosTorneo {
   foto_carta_fondo?: string;
   foto_carta_titulo?: string;
   foto_carta_personaje?: string;
+  id_evento?: number;
 }
 
 

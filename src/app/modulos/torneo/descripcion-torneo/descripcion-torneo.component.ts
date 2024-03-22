@@ -26,6 +26,8 @@ export class DescripcionTorneoComponent {
   descripcion_premio_3: string = "";
   foto_premio_3: string = "";
 
+  id_evento: number = 0;
+
 
 
 
@@ -49,7 +51,7 @@ export class DescripcionTorneoComponent {
         //console.log(respuesta);
         if (respuesta.CODIGO == 200) {
           this.CapturarParametrosHtml(respuesta);
-          console.log(this.nombre_torneo);
+          //console.log(this.id_evento);
         }else{
           //console.log(respuesta);
           this.router.navigate(['/noticias/error404']);
@@ -75,9 +77,25 @@ export class DescripcionTorneoComponent {
     this.foto_premio_2= respuesta.DATOS?.foto_premio_torneo_2!;
     this.descripcion_premio_3= respuesta.DATOS?.premio_torneo_3!;
     this.foto_premio_3= respuesta.DATOS?.foto_premio_torneo_3!;
+    //id evento
+    this.id_evento= respuesta.DATOS?.id_evento!;
   }
 
-  //funcion para
+  //funcion para el boton registrate
+  RegistrarseEvento(){
+    //console.log(this.id_evento);
+    this.TorneoService.RegistrarAsistenciaEvento(this.id_evento).subscribe(
+      (respuesta:any) => {
+        //console.log(respuesta);
+        if (respuesta.CODIGO == 200) {
+          alert('Te has registrado correctamente');
+        } else {
+          alert('No se pudo registrar');
+        }
+      }
+    );
+  }
+
 
 
 

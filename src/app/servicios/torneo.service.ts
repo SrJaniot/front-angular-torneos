@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { SeguridadService } from './seguridad.service';
 import { RespuestaServerObtenerTorneos } from '../Modelos/RespuestaServer.ObtenerTorneos.model';
 import { RespuestaServerObtenerDatosTorneo } from '../Modelos/RespuestaServer.ObtenerDatosTorneo.model';
+import { RespuestaServer } from '../Modelos/RespuestaServer.model';
+import { RespuestaServer2 } from '../Modelos/RespuestaServer2.model';
 
 
 @Injectable({
@@ -42,6 +44,18 @@ export class TorneoService {
       id_torneo,
       id_postgrest
     }, { headers: headers });
+  }
+
+
+
+  RegistrarAsistenciaEvento(id_evento: number): any {
+    const id_postgrest = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
+    //convierte el id_postgrest a entero
+    let id_postgrest_entero = parseInt(id_postgrest!);
+    return this.http.post(this.url_ms_negocio+'registrarAsistenciaEvento', {
+      id_evento: 1,
+      id_usuario: 1
+    });
   }
 
 
