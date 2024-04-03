@@ -57,6 +57,7 @@ export class PerfilEquipoComponent {
       if (respuesta.CODIGO == 200) {
         this.CapturarParametrosHtml(respuesta);
         this.actualizarJugadoresMostrados();
+        console.log(respuesta)
         //console.log(this.nombr_equipo);
         //console.log(this.ListaJugadores);
         //console.log(respuesta);

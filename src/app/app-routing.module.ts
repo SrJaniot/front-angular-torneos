@@ -37,6 +37,11 @@ const routes: Routes = [
     loadChildren: () => import('./modulos/torneo/torneo.module').then(m => m.TorneoModule)
 
   },
+  {
+    path:'evento',
+    loadChildren: () => import('./modulos/evento/evento.module').then(m => m.EventoModule)
+
+  },
 
 
   // RUTA NO ENCONTRADA TIENE QUE SER EL ULTIMO

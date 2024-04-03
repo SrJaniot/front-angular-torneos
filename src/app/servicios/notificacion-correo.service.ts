@@ -45,6 +45,41 @@ export class NotificacionCorreoService {
     },{ responseType: 'text' });
   }
 
+  EnviarCorreoTiket_ingreso_evento_qr(id_evento: string,hash_validacion: string): Observable<any> {
+    let id_usuario= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
+    let nombre_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
+    let correo_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.correo;
+    return this.http.post(this.url_notificaciones_correo+'correo-tiketIngresoEvento_qr', {
+      asuntoCorreo: 'Tiket de ingreso al evento',
+      correoDestino: correo_destino,
+      nombreDestino: nombre_destino,
+      contenidoCorreo:"<h1>Tiket de ingreso al evento</h1>",
+
+      id_evento: id_evento,
+      id_datos_personales: id_usuario,
+      hash_validacion: hash_validacion
+
+    },{ responseType: 'text' });
+  }
+
+  EnviarCorreoTiket_ingreso_evento_barras(id_evento: string,hash_validacion: string): Observable<any> {
+    let id_usuario= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
+    let nombre_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
+    let correo_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.correo;
+    return this.http.post(this.url_notificaciones_correo+'correo-tiketIngresoEvento_barras', {
+      asuntoCorreo: 'Tiket de ingreso al evento',
+      correoDestino: correo_destino,
+      nombreDestino: nombre_destino,
+      contenidoCorreo:"<h1>Tiket de ingreso al evento</h1>",
+
+      id_evento: id_evento,
+      id_datos_personales: id_usuario,
+      hash_validacion: hash_validacion
+
+    },{ responseType: 'text' });
+  }
+
+
 
 
 

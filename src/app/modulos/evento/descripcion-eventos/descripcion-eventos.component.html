@@ -1,0 +1,127 @@
+<div class="contenedor-principal">
+  <div class="general">
+
+       <!-- Topbar Start -->
+
+          <!-- Topbar End -->
+
+
+          <!-- Navbar Start -->
+          <div class="container-fluid bg-dark mb-30">
+              <div class="row px-xl-5">
+
+
+              </div>
+          </div>
+          <!-- Navbar End -->
+
+
+          <!-- Breadcrumb Start -->
+
+          <!-- Breadcrumb End -->
+
+
+          <!-- Shop Detail Start -->
+          <div class="container-fluid pb-5">
+              <div class="row px-xl-5">
+                  <div class="col-lg-5 mb-30">
+                      <div>
+                          <div class="carousel-inner bg-light">
+                              <div class="carousel-item active">
+                                  <img class="w-100 h-100" [src]="'http://localhost:3001/ObtenerArchivo/2/'+foto_evento" alt="Image">
+                              </div>
+
+                          </div>
+
+                      </div>
+                  </div>
+
+                  <div class="col-lg-7 h-auto mb-30">
+                      <div class="h-100 bg-light p-30">
+                          <h3>{{nombre_evento}}</h3>
+                          <div class="d-flex mb-3">
+
+                          </div>
+                          <p class="mb-4">{{resumen_evento}}</p>
+                              <div class="video-container">
+                                <iframe [src]="video_evento" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              </div>
+
+
+                              <button (click)="RegistrarseEvento()" class="btn btn-primary px-3">Registrarse</button>
+                      </div>
+                      <div class="d-flex pt-2">
+                          <strong class="text-dark mr-2">Evento creado por:  programing</strong>
+                          <div class="d-inline-flex">
+                                  <a class="text-dark px-2" href="">
+                                      <i class="fab fa-facebook-f"></i>
+                                  </a>
+                                  <a class="text-dark px-2" href="">
+                                      <i class="fab fa-twitter"></i>
+                                  </a>
+                                  <a class="text-dark px-2" href="">
+                                      <i class="fab fa-linkedin-in"></i>
+                                  </a>
+                                  <a class="text-dark px-2" href="">
+                                      <i class="fab fa-pinterest"></i>
+                                  </a>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="row px-xl-5">
+                  <div class="col">
+                      <div class="bg-light p-30">
+                          <div class="nav nav-tabs mb-4">
+                            <a class="nav-item nav-link text-light " (click)="changeTab('info')">Información general</a>
+                            <a class="nav-item nav-link text-light" (click)="changeTab('rules')">Reglas</a>
+                          </div>
+                          <div class="tab-content">
+                            <div class="tab-pane fade show active" *ngIf="activeTab === 'info'">
+                              <h4 class="mb-3">Informacion Evento</h4>
+                                  <p>{{informacion_general_evento}}</p>
+                              </div>
+                              <div class="tab-pane fade show active" *ngIf="activeTab === 'rules'">
+                                <h4 class="mb-3">Reglas Evento</h4>
+                                  <p>{{informacion_reglas_evento}}</p>
+
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Shop Detail End -->
+
+
+          <!-- Products Start -->
+
+
+
+          <div class="container-fluid py-3">
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Actividades principales</span></h2>
+          </div>
+          <section class="latest-news">
+            <div class="" itemprop="event" itemscope itemtype=" http://schema.org/Event">
+              <div class="owl-one-activos owl-carousel">
+                <div *ngFor="let actividad of ListadeActividades" class="product-item bg-light">
+                  <!-- Contenido de la primera imagen aquí -->
+                  <a class="no-underline" routerLink="/torneo/descripcion-torneo/{{actividad.id_torneo}}">
+                      <div class="product-img position-relative overflow-hidden">
+                          <img class="img-fluid w-100 custom-img" [src]="'http://localhost:3001/ObtenerArchivo/2/'+actividad.foto_torneo" alt="">
+
+                      </div>
+                      <div class="text-center py-4">
+                          <h2  class="h6 text-decoration-none text-truncate no-underline">{{actividad.nom_torneo}}</h2>
+
+
+                      </div>
+                  </a>
+
+
+              </div>
+
+              </div>
+            </div>

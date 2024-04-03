@@ -1,0 +1,825 @@
+
+@font-face {
+  font-family: 'Afacad';
+  src: url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+
+}
+
+.cuerpo-entero {
+font-size: 62.5%;
+line-height: 1.15; /* 1 */
+-webkit-text-size-adjust: 100%; /* Para Safari y versiones antiguas de Chrome */
+text-size-adjust: 100%; /* Para Chrome 54+, Chrome Android 54+, Edge 79+, Samsung Internet 6.0+ */
+font-family: Afacad;
+}
+
+/* Sections
+ ========================================================================== */
+
+/**
+* Remove the margin in all browsers.
+*/
+
+.cuerpo-entero {
+margin: 0;
+}
+
+
+/* Grouping content
+ ========================================================================== */
+
+/**
+* 1. Add the correct box sizing in Firefox.
+* 2. Show the overflow in Edge and IE.
+*/
+
+hr {
+box-sizing: content-box; /* 1 */
+height: 0; /* 1 */
+overflow: visible; /* 2 */
+}
+
+/**
+* 1. Correct the inheritance and scaling of font size in all browsers.
+* 2. Correct the odd `em` font sizing in all browsers.
+*/
+
+pre {
+font-family: 'Afacad'; /* 1 */
+font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+ ========================================================================== */
+
+/**
+* Remove the gray background on active links in IE 10.
+*/
+
+a {
+background-color: transparent;
+text-decoration: none;
+}
+
+/**
+* 1. Remove the bottom border in Chrome 57-
+* 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+*/
+
+abbr[title] {
+border-bottom: none; /* 1 */
+text-decoration: underline; /* 2 */
+text-decoration: underline dotted; /* 2 */
+}
+
+/**
+* Add the correct font weight in Chrome, Edge, and Safari.
+*/
+
+b,
+strong {
+font-weight: bolder;
+}
+
+/**
+* Add the correct font size in all browsers.
+*/
+
+small {
+font-size: 80%;
+}
+
+/**
+* Prevent `sub` and `sup` elements from affecting the line height in
+* all browsers.
+*/
+
+sub,
+sup {
+font-size: 75%;
+line-height: 0;
+position: relative;
+vertical-align: baseline;
+}
+
+sub {
+bottom: -0.25em;
+}
+
+sup {
+top: -0.5em;
+}
+
+/* Embedded content
+ ========================================================================== */
+
+/**
+* Remove the border on images inside links in IE 10.
+*/
+
+img {
+border-style: none;
+}
+
+/* Forms
+ ========================================================================== */
+
+/**
+* 1. Change the font styles in all browsers.
+* 2. Remove the margin in Firefox and Safari.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+font-family: 'Afacad'; /* 1 */
+font-size: 100%; /* 1 */
+line-height: 1.15; /* 1 */
+margin: 0; /* 2 */
+}
+
+/**
+* Show the overflow in IE.
+* 1. Show the overflow in Edge.
+*/
+
+button,
+input { /* 1 */
+overflow: visible;
+}
+
+/**
+* Remove the inheritance of text transform in Edge, Firefox, and IE.
+* 1. Remove the inheritance of text transform in Firefox.
+*/
+
+button,
+select { /* 1 */
+text-transform: none;
+}
+
+/**
+* Correct the inability to style clickable types in iOS and Safari.
+*/
+
+
+/**
+* Remove the inner border and padding in Firefox.
+*/
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+border-style: none;
+padding: 0;
+}
+
+/**
+* Restore the focus styles unset by the previous rule.
+*/
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+outline: 1px dotted ButtonText;
+}
+
+/**
+* Correct the padding in Firefox.
+*/
+
+fieldset {
+padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+* 1. Correct the text wrapping in Edge and IE.
+* 2. Correct the color inheritance from `fieldset` elements in IE.
+* 3. Remove the padding so developers are not caught out when they zero out
+*		`fieldset` elements in all browsers.
+*/
+
+legend {
+box-sizing: border-box; /* 1 */
+color: inherit; /* 2 */
+display: table; /* 1 */
+max-width: 100%; /* 1 */
+padding: 0; /* 3 */
+white-space: normal; /* 1 */
+}
+
+/**
+* Add the correct vertical alignment in Chrome, Firefox, and Opera.
+*/
+
+progress {
+vertical-align: baseline;
+}
+
+/**
+* Remove the default vertical scrollbar in IE 10+.
+*/
+
+textarea {
+overflow: auto;
+}
+
+/**
+* 1. Add the correct box sizing in IE 10.
+* 2. Remove the padding in IE 10.
+*/
+
+[type="checkbox"],
+[type="radio"] {
+box-sizing: border-box; /* 1 */
+padding: 0; /* 2 */
+}
+
+/**
+* Correct the cursor style of increment and decrement buttons in Chrome.
+*/
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+height: auto;
+}
+
+/**
+* 1. Correct the odd appearance in Chrome and Safari.
+* 2. Correct the outline style in Safari.
+*/
+
+
+
+/**
+* Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+[type="search"]::-webkit-search-decoration {
+-webkit-appearance: none;
+}
+
+/**
+* 1. Correct the inability to style clickable types in iOS and Safari.
+* 2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+-webkit-appearance: button; /* 1 */
+font: inherit; /* 2 */
+}
+
+/* Interactive
+ ========================================================================== */
+
+/*
+* Add the correct display in Edge, IE 10+, and Firefox.
+*/
+
+details {
+display: block;
+}
+
+/*
+* Add the correct display in all browsers.
+*/
+
+summary {
+display: list-item;
+}
+
+/* Misc
+ ========================================================================== */
+
+/**
+* Add the correct display in IE 10+.
+*/
+
+template {
+display: none;
+}
+
+/**
+* Add the correct display in IE 10.
+*/
+
+[hidden] {
+display: none;
+}
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+color: #404040;
+font-family:'Afacad';
+line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+clear: both;
+margin: 0;
+}
+
+p {
+margin: 0;
+}
+
+#copyright{
+font-family: 'Afacad';
+}
+
+dfn, cite, em, i {
+font-style: italic;
+}
+
+blockquote {
+margin: 0 1.5em;
+}
+
+address {
+margin: 0 0 1.5em;
+}
+
+pre {
+background: #FFF;
+font-family: 'Afacad';
+font-size: 15px;
+font-size: 0.9375rem;
+line-height: 1.6;
+margin-bottom: 1.6em;
+max-width: 100%;
+overflow: auto;
+padding: 1.6em;
+}
+
+code, kbd, tt, var {
+font-family: 'Afacad';
+font-size: 15px;
+font-size: 0.9375rem;
+}
+
+abbr, acronym {
+border-bottom: 1px dotted #666;
+cursor: help;
+}
+
+mark, ins {
+background: #FFF;
+text-decoration: none;
+}
+
+big {
+font-size: 125%;
+}
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+html {
+box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+/* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+box-sizing: inherit;
+}
+
+body {
+background-color: #000;
+/* Fallback for when there is no custom background color defined. */
+}
+
+
+.cuerpo-entero {
+outline: none;
+}
+
+.container {
+max-width: 1170px;
+margin-right: auto;
+margin-left: auto;
+}
+
+
+
+/*====For Video=====*/
+
+
+
+/*=========Popular Courses================*/
+
+.page-heading .container {
+text-align: center;
+/*padding-top: 6em;*/
+/*padding-bottom: 4.687em;*/
+padding-top: 6.25em;
+padding-bottom: 4.375em;
+}
+
+.page-heading .container h2{
+font-size: 2.5rem;
+font-family: 'Afacad';
+font-weight: bold;
+text-transform: uppercase;
+color: #FFF;
+}
+.page-heading .container h3 {
+font-size: 1.5rem;
+color: #FF9933;
+}
+
+/*=========Popular courses  && Course Listing Page Css======*/
+
+
+.recent-course-single .grid {
+/*	display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-gap: 30px;*/
+/*display: flex;*/
+flex-flow: row wrap;
+justify-content: space-between;
+}
+
+
+.learn-courses .box-wrap {
+width: 100%;
+}
+
+.learn-courses .box-wrap, .recent-course-single .grid-item{
+position: relative;
+margin-bottom: 30px;
+}
+
+.learn-courses .box-wrap .img-wrap,
+.course-listing-page .grid-item .img-wrap,
+.recent-course-single .grid-item .img-wrap{
+margin-bottom: -7px;
+}
+
+.learn-courses .learn-desining-banner,
+.course-listing-page .grid-item .learn-desining-banner-course,
+.recent-course-single .grid-item .learn-desining-banner-course {
+position: absolute;
+left: 5%;
+top: 44%;
+background: #FF9933;
+padding: 0.9375em 3.5625em 1em 3.5625em;
+/*font-size: 1.8rem;*/
+font-family: "Afacad";
+/*text-decoration: none;*/
+}
+
+
+
+.learn-courses .box-wrap .box-body,
+.course-listing-page .grid-item .box-body,
+.recent-course-single .grid-item .box-body{
+border: 1px solid #b7b7b7;
+padding: 1.25em;
+padding-top: 2.8125em;
+}
+
+.learn-courses .box-body p,
+.course-listing-page .grid-item .box-body p,
+.recent-course-single .grid-item .box-body p {
+/*font-size: 1.4rem;*/
+font-family: "Afacad";
+/*color: #5c5c5c;*/
+}
+
+.learn-courses .box-body > p,
+.course-listing-page .grid-item .box-body > p,
+.recent-course-single .grid-item .box-body > p {
+margin-top: 1.428em;
+margin-bottom: 2.1428em;
+}
+
+.learn-courses .box-body section p {
+font-family: "Afacad";
+}
+
+.learn-courses .box-body p span ,
+.course-listing-page .grid-item .box-body p span,
+.recent-course-single .grid-item .box-body p span{
+color: #060e1a;
+}
+/*=======Owl Carlow ==========*/
+
+.learn-courses .owl-carousel .owl-nav, .latest-news .owl-carousel .owl-nav {
+/*color:  #636363;*/
+text-align: center;
+  margin-top: 2.5em;
+  margin-bottom: 6.25em;
+  position: relative;
+}
+
+.learn-courses .owl-carousel .owl-nav button[class*="owl-"], .latest-news .owl-carousel .owl-nav button[class*="owl-"]{
+  width: 45px;
+  height: 45px;
+  border: 2px solid #636363;
+  border-radius: 100%;
+  margin-right: 40px;
+  background-image: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="%23636363" d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"></path></svg>');
+  background-repeat: no-repeat;
+  background-size: 15px;
+  background-position: center;
+  text-indent: 50px;
+  overflow: hidden;
+}
+
+.learn-courses .owl-carousel .owl-nav button.owl-next, .latest-news .owl-carousel .owl-nav button.owl-next{
+  margin-right: 0;
+  margin-left: 40px;
+  background-image: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path fill="%23636363" d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path></svg>');
+}
+
+.learn-courses .owl-carousel .owl-nav::before, .latest-news .owl-carousel .owl-nav::before {
+  content: "";
+  background: #636363;
+  width: 60px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.learn-courses .owl-carousel .owl-dots, .latest-news .owl-carousel .owl-dots {
+display: none;
+}
+
+
+/*===========================
+RESPONSIVE STYLESHEET
+===========================*/
+
+@media screen and (max-width: 1199px) {
+.container {
+  max-width: 1000px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/*=====Popular Courses====*/
+
+
+/*=====================================
+  Blog Page
+======================================*/
+.page-content .container {
+  flex-flow: column wrap;
+}
+
+.page-content .container .grid-container{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.page-content .container aside {
+  width: 371px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-content .latest-course {
+  margin-bottom: 4em;
+}
+
+/*=====================================
+  Blog Edu Single
+======================================*/
+.page-content .page-article {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.page-content .comment-form {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*=====================================
+  About Page
+======================================*/
+
+}
+
+@media screen and (max-width: 1024px) {
+.container {
+  max-width: 800px;
+}
+
+
+}
+
+@media screen and (max-width: 767px) {
+.container {
+  max-width: 450px;
+}
+
+
+}
+
+@media screen and (max-width: 550px) {
+.container {
+  max-width: 300px;
+}
+
+
+
+/*===Popular Courses==*/
+
+.learn-courses .learn-desining-banner,
+.course-listing-page .grid-item .learn-desining-banner-course,
+.recent-course-single .grid-item .learn-desining-banner-course {
+  top: 37% !important;
+  left: 3%;
+  padding: 10px 20px;
+}
+
+.events-section .event-wrap,
+.upcomming .container .event-wrap
+ {
+  margin-bottom: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.events-section .event-wrap,
+.events-section .event-wrap .img-wrap
+{
+  width: 280px;
+}
+
+.events-section .event-wrap .details {
+  left: 2%;
+  top: 80%;
+}
+
+
+/*=========================
+  Course Listing Page
+==========================*/
+
+.course-listing-page .button-group::after,
+.gallery-section2 .button-group::after {
+  width: 240px;
+}
+
+.course-listing-page .grid-item,
+.recent-course-single .grid-item {
+  width: 270px;
+}
+}
+
+.what-other-say .wrap-others-say #carousel .flex-active-slide {
+  height: 220px;
+  width: 150px !important;
+}
+
+#carousel .flex-active-slide .hidden {
+display: block;
+}
+
+#carousel {
+margin-bottom: 0;
+}
+
+#carousel .flex-viewport {
+overflow-y: visible !important;
+}
+
+.hidden {
+display: none;
+}
+
+/*==testimonial======*/
+
+/*CARTAS*/
+:root {
+--card-height: 300px;
+--card-width: calc(var(--card-height) / 1.75);
+}
+
+.card {
+width: var(--card-width);
+height: var(--card-height);
+position: relative;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+padding: 0 36px;
+perspective: 2500px;
+margin: 0 50px;
+
+}
+
+
+.cover-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.wrapper {
+transition: all 0.5s;
+position: absolute;
+width: 100%;
+z-index: -1;
+
+}
+
+.card:hover .wrapper {
+transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+-webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+-moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+content: "";
+opacity: 0;
+width: 100%;
+height: 80px;
+transition: all 0.5s;
+position: absolute;
+left: 0;
+}
+.wrapper::before {
+top: 0;
+height: 100%;
+background-image: linear-gradient(
+  to top,
+  transparent 46%,
+  rgba(12, 13, 19, 0.5) 68%,
+  rgba(12, 13, 19) 97%
+
+);
+}
+.wrapper::after {
+bottom: 0;
+opacity: 1;
+background-image: linear-gradient(
+  to bottom,
+  transparent 46%,
+  rgba(12, 13, 19, 0.5) 68%,
+  rgba(12, 13, 19) 97%
+);
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+opacity: 1;
+}
+
+.card:hover .wrapper::after {
+height: 120px;
+}
+.title {
+width: 100%;
+transition: transform 0.5s;
+}
+.card:hover .title {
+transform: translate3d(0%, -50px, 100px);
+}
+
+.character {
+width: 100%;
+opacity: 0;
+transition: all 0.5s;
+position: absolute;
+z-index: -1;
+}
+
+.card:hover .character {
+opacity: 1;
+transform: translate3d(0%, -30%, 100px);
+}
+
+
+
+/*-------------pruebas-----------------*/
+
+
+.title{
+  font-size: 1.5rem;
+  font-family: 'Afacad';
+  color: #FFF;
+  text-align: center;
+  margin-top: 15.5em;
+  margin-bottom: 1.5em;
+}

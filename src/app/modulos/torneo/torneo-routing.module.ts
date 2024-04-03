@@ -10,7 +10,7 @@ const routes: Routes = [
 
   },
   {
-    path:'descipcion-torneo/:id_torneo',
+    path:'descripcion-torneo/:id_torneo',
     component: DescripcionTorneoComponent
   }
 

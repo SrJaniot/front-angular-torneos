@@ -1,0 +1,111 @@
+<div class="cuerpo-entero">
+
+	<div id="page" class="site" itemscope itemtype="http://schema.org/LocalBusiness">
+
+		<div class="page-heading">
+			<div class="container">
+				<h2>¡Eventos disponibles!</h2>
+				<h3>Todos los Eventos disponibles</h3>
+			</div>
+
+		</div>
+		<!-- Popular courses End -->
+    <div class="learn-courses">
+      <div class="container">
+        <div class="courses">
+          <div class="owl-one-activos owl-carousel">
+            <!-- El ngFor ahora está dentro del carrusel, para repetir solo los elementos del carrusel -->
+            <div class="box-wrap" *ngFor="let evento of Lista_Eventos_Activos" itemprop="event" itemscope itemtype="http://schema.org/Course">
+              <div class="cartas">
+                <a [href]="'/evento/descripcion-evento/'+evento.id_evento" alt="Mythrill" >
+                  <div class="card">
+                    <div class="wrapper">
+                      <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                      <img [src]="'http://localhost:3001/ObtenerArchivo/2/'+evento.foto_carta_fondo" class="cover-image" />
+                    </div>
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_titulo" class="title" />
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_personaje" class="character" />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<!-- Learn courses End -->
+		<div class="page-heading">
+			<div class="container">
+				<h2>¡Eventos en curso!</h2>
+				<h3>Mira todos los Eventos que se están ejecutando ahora mismo</h3>
+			</div>
+
+		</div>
+		<!-- Popular courses End -->
+    <div class="learn-courses">
+      <div class="container">
+        <div class="courses">
+          <div class="owl-one-encurso owl-carousel">
+            <!-- El ngFor ahora está dentro del carrusel, para repetir solo los elementos del carrusel -->
+            <div class="box-wrap" *ngFor="let evento of Lista_Eventos_EnCurso" itemprop="event" itemscope itemtype="http://schema.org/Course">
+              <div class="cartas">
+                <a [href]="'/evento/descripcion-evento/'+evento.id_evento" alt="Mythrill" >
+                  <div class="card">
+                    <div class="wrapper">
+                      <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                      <img [src]="'http://localhost:3001/ObtenerArchivo/2/'+evento.foto_carta_fondo" class="cover-image" />
+                    </div>
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_titulo" class="title" />
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_personaje" class="character" />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<!-- Learn courses End -->
+
+    <div class="page-heading">
+      <div class="container">
+        <h2>¡Eventos Finalizados!</h2>
+        <h3>¿No lograste ver que sucedió? Aquí puedes ver el resumen de tus Eventos favoritos finalizados</h3>
+      </div>
+
+    </div>
+		<!-- Popular courses End -->
+    <div class="learn-courses">
+      <div class="container">
+        <div class="courses">
+          <div class="owl-one-finalizado owl-carousel">
+            <!-- El ngFor ahora está dentro del carrusel, para repetir solo los elementos del carrusel -->
+            <div class="box-wrap" *ngFor="let evento of Lista_Eventos_Finalizados" itemprop="event" itemscope itemtype="http://schema.org/Course">
+              <div class="cartas">
+                <a [href]="'/evento/descripcion-evento/'+evento.id_evento" alt="Mythrill" >
+                  <div class="card">
+                    <div class="wrapper">
+                      <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                      <img [src]="'http://localhost:3001/ObtenerArchivo/2/'+evento.foto_carta_fondo" class="cover-image" />
+                    </div>
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_titulo" class="title" />
+                    <!-- Asegúrate de que la concatenación de la URL se haga correctamente -->
+                    <img [src]="'http://localhost:3001/ObtenerArchivo/2/' + evento.foto_carta_personaje" class="character" />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<!-- Learn courses End -->
+
+  </div>
+</div>
+

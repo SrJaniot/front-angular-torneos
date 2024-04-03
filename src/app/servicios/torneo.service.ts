@@ -53,8 +53,8 @@ export class TorneoService {
     //convierte el id_postgrest a entero
     let id_postgrest_entero = parseInt(id_postgrest!);
     return this.http.post(this.url_ms_negocio+'registrarAsistenciaEvento', {
-      id_evento: 1,
-      id_usuario: 1
+      id_evento: id_evento,
+      id_usuario: id_postgrest_entero
     });
   }
 
