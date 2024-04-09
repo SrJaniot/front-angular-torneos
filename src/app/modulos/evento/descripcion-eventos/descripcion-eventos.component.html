@@ -48,7 +48,7 @@
                               </div>
 
 
-                              <button (click)="RegistrarseEvento()" class="btn btn-primary px-3">Registrarse</button>
+                              <button *ngIf="Boton_Registrarse" (click)="RegistrarseEvento()" class="btn btn-primary px-3">Registrarse</button>
                       </div>
                       <div class="d-flex pt-2">
                           <strong class="text-dark mr-2">Evento creado por:  programing</strong>

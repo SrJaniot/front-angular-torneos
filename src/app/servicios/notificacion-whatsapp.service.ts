@@ -7,7 +7,7 @@ import { ConfiguracionRutasBackend } from '../config/configuracion.rutas.backend
 })
 export class NotificacionWhatsappService {
 
-  private url_notificaciones_whatsapp : string = ConfiguracionRutasBackend.urlms_notificaciones_whatsapp;
+  private url_notificaciones_whatsapp : string = ConfiguracionRutasBackend.urlbackend_mc_logica;
 
   constructor(
     private http: HttpClient,
@@ -24,5 +24,14 @@ export class NotificacionWhatsappService {
     });
   }
 
-  
+  EnviarMensajeWhatsappArchivo(numeroDestino: string, mensaje: string, mediaUrl: string): any {
+    return this.http.post(this.url_notificaciones_whatsapp+'mensaje-con-archivo', {
+      message: mensaje,
+      phone: numeroDestino,
+      mediaUrl: mediaUrl
+    });
+  }
+
+
+
 }

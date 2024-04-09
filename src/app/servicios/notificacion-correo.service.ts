@@ -45,7 +45,8 @@ export class NotificacionCorreoService {
     },{ responseType: 'text' });
   }
 
-  EnviarCorreoTiket_ingreso_evento_qr(id_evento: string,hash_validacion: string): Observable<any> {
+  EnviarCorreoTiket_ingreso_evento_qr(id_evento: string,nom_evento:string,fecha_evento: string,hora_inicio: string,hora_fin: string,
+    hash_validacion: string): Observable<any> {
     let id_usuario= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
     let nombre_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
     let correo_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.correo;
@@ -54,15 +55,19 @@ export class NotificacionCorreoService {
       correoDestino: correo_destino,
       nombreDestino: nombre_destino,
       contenidoCorreo:"<h1>Tiket de ingreso al evento</h1>",
-
       id_evento: id_evento,
       id_datos_personales: id_usuario,
-      hash_validacion: hash_validacion
+      hash_validacion: hash_validacion,
+      nom_evento: nom_evento,
+      fecha_evento: fecha_evento,
+      hora_inicio: hora_inicio,
+      hora_fin: hora_fin,
 
     },{ responseType: 'text' });
   }
 
-  EnviarCorreoTiket_ingreso_evento_barras(id_evento: string,hash_validacion: string): Observable<any> {
+  EnviarCorreoTiket_ingreso_evento_barras(id_evento: string,nom_evento:string,fecha_evento: string,hora_inicio: string,hora_fin: string,
+                                          hash_validacion: string): Observable<any> {
     let id_usuario= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
     let nombre_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
     let correo_destino= this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.correo;
@@ -71,10 +76,13 @@ export class NotificacionCorreoService {
       correoDestino: correo_destino,
       nombreDestino: nombre_destino,
       contenidoCorreo:"<h1>Tiket de ingreso al evento</h1>",
-
       id_evento: id_evento,
       id_datos_personales: id_usuario,
-      hash_validacion: hash_validacion
+      hash_validacion: hash_validacion,
+      nom_evento: nom_evento,
+      fecha_evento: fecha_evento,
+      hora_inicio: hora_inicio,
+      hora_fin: hora_fin,
 
     },{ responseType: 'text' });
   }

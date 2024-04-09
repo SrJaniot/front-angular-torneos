@@ -7,6 +7,8 @@ import { EventoService } from '../../../servicios/evento.service';
 import { RespuestaServerObtenerDatosEvento } from '../../../Modelos/RespuestaServerObtenerDatosEvento.model';
 import { ListTorneos } from '../../../Modelos/ListTorneos.model';
 import { NotificacionCorreoService } from '../../../servicios/notificacion-correo.service';
+import { NotificacionWhatsappService } from '../../../servicios/notificacion-whatsapp.service';
+import { SeguridadService } from '../../../servicios/seguridad.service';
 
 declare var $: any;
 
@@ -37,6 +39,11 @@ export class DescripcionEventosComponent {
 
   ListadeActividades:ListTorneos[] = []
 
+  Boton_Registrarse:boolean = false;
+
+  //fechas
+  fecha_inicio: Date
+  fecha_fin: Date
 
 
 
@@ -45,13 +52,19 @@ export class DescripcionEventosComponent {
   constructor(
     private route: ActivatedRoute,
     private EventoService: EventoService,
-    private TorneoService: TorneoService,
     private router: Router,
     private sanitizer: DomSanitizer,
     private NotificacionCorreoService: NotificacionCorreoService,
+    private NotificacionWhatsappService: NotificacionWhatsappService,
+    private seguridadService: SeguridadService
 
 
-  ){}
+  ){
+    this.fecha_inicio = new Date();
+    this.fecha_fin = new Date();
+
+
+  }
 
   ngOnInit(): void {
     //capturamos el id del equipo de la url
@@ -64,8 +77,21 @@ export class DescripcionEventosComponent {
         console.log(respuesta);
         if (respuesta.CODIGO == 200) {
           this.CapturarParametrosHtml(respuesta);
-          console.log(this.id_evento);
+          //console.log(this.id_evento);
+          //console.log(this.fecha_inicio)
+
           this.inicializarCarouselDespuesDeObtenerDatosEventosDisponibles();
+          let datos2 = this.EventoService.ValidarAforoEvento(this.id_evento).subscribe(
+            (respuesta: RespuestaServerObtenerDatosEvento) => {
+              console.log(respuesta);
+              if (respuesta.CODIGO == 200) {
+                console.log(respuesta.DATOS);
+                if(respuesta.DATOS){
+                  this.Boton_Registrarse = true;
+                }
+              }
+            }
+          );
         }else{
           //console.log(respuesta);
           this.router.navigate(['/noticias/error404']);
@@ -135,12 +161,15 @@ export class DescripcionEventosComponent {
     this.foto_premio_3= respuesta.DATOS?.fun_get_evento2?.foto_premio_evento_3!;
     //lista de actividades
     this.ListadeActividades = respuesta.DATOS?.fun_get_evento2?.torneos!;
+    //fechas
+    this.fecha_inicio=new Date( respuesta.DATOS?.fun_get_evento2?.fecha_inicio_evento!);
+    this.fecha_fin= new Date ( respuesta.DATOS?.fun_get_evento2?.fecha_fin_evento!);
   }
 
   //funcion para el boton registrate
   RegistrarseEvento(){
     //console.log(this.id_evento);
-    this.TorneoService.RegistrarAsistenciaEvento(this.id_evento).subscribe(
+    this.EventoService.RegistrarAsistenciaEvento(this.id_evento).subscribe(
       (respuesta:any) => {
         console.log(respuesta);
         if (respuesta.CODIGO == 200) {
@@ -149,19 +178,58 @@ export class DescripcionEventosComponent {
           let hash_validacion = respuesta.DATOS!;
           //convierte el id del evento a string
           let id_evento_String = this.id_evento.toString();
+          //capturar parametros de la fecha independiente
+          let fecha_inicio = this.fecha_inicio;
+          let fecha_inicio_anio_mes_dia = fecha_inicio.getFullYear() + '-' + (fecha_inicio.getMonth() + 1) + '-' + fecha_inicio.getDate();
+          let fecha_inicio_hora_minuto = fecha_inicio.getHours() + ':' + fecha_inicio.getMinutes();
+          let fecha_fin = this.fecha_fin;
+          let fecha_fin_anio_mes_dia = fecha_fin.getFullYear() + '-' + (fecha_fin.getMonth() + 1) + '-' + fecha_fin.getDate();
+          let fecha_fin_hora_minuto = fecha_fin.getHours() + ':' + fecha_fin.getMinutes();
+
           //enviar correo codigo de barras
-          this.NotificacionCorreoService.EnviarCorreoTiket_ingreso_evento_barras(id_evento_String,hash_validacion).subscribe({
+
+          this.NotificacionCorreoService.EnviarCorreoTiket_ingreso_evento_barras(id_evento_String,this.nombre_evento,fecha_inicio_anio_mes_dia,fecha_inicio_hora_minuto,fecha_fin_hora_minuto,hash_validacion).subscribe({
             next: (respuesta:any) => {
               console.log(respuesta);
               console.log('correo enviado');
             }
           });
-          this.NotificacionCorreoService.EnviarCorreoTiket_ingreso_evento_qr(id_evento_String,hash_validacion).subscribe({
+          this.NotificacionCorreoService.EnviarCorreoTiket_ingreso_evento_qr(id_evento_String,this.nombre_evento,fecha_inicio_anio_mes_dia,fecha_inicio_hora_minuto,fecha_fin_hora_minuto,hash_validacion).subscribe({
             next: (respuesta:any) => {
               console.log(respuesta);
               console.log('correo enviado');
             }
           });
+          //enviar mensaje whatsapp
+          //preparar el nombre del usuario para mandarlo por url, es decir cuando encuetre un espacio lo cambia por %20
+          let nombre_usuario = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.nombre;
+          let nombre_usuario_con_espacios = nombre_usuario?.split(" ").join("%20");
+          let nombre_evento_con_espacios = this.nombre_evento.split(" ").join("%20");
+
+          let url_code_barras = "http://127.0.0.1:3001/generateBarcodedownloadPDF_GET?id_evento="+id_evento_String+"&id_datos_personales="+this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres+"&hash_validacion="+hash_validacion+"&nombreDestino="+nombre_usuario_con_espacios+"&nom_evento="+nombre_evento_con_espacios+"&fecha_evento="+fecha_inicio_anio_mes_dia+"&hora_inicio="+fecha_inicio_hora_minuto+"&hora_fin="+fecha_fin_hora_minuto;
+          let url_qr = "http://127.0.0.1:3001/generateQRCodePDF_GET?id_evento="+id_evento_String+"&id_datos_personales="+this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres+"&hash_validacion="+hash_validacion+"&nombreDestino="+nombre_usuario_con_espacios+"&nom_evento="+nombre_evento_con_espacios+"&fecha_evento="+fecha_inicio_anio_mes_dia+"&hora_inicio="+fecha_inicio_hora_minuto+"&hora_fin="+fecha_fin_hora_minuto;
+          let celular ="57"+ this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.celular;
+          console.log(url_code_barras);
+          console.log(url_qr);
+          console.log(celular);
+
+
+
+
+          this.NotificacionWhatsappService.EnviarMensajeWhatsappArchivo(celular,'tiket',url_code_barras ).subscribe({
+           next: (respuesta:any) => {
+              console.log(respuesta);
+              console.log('mensaje enviado');
+            }
+          });
+          this.NotificacionWhatsappService.EnviarMensajeWhatsappArchivo(celular,'tiket',url_qr ).subscribe({
+            next:(respuesta:any) => {
+              console.log(respuesta);
+              console.log('mensaje enviado');
+            }
+          });
+
+
 
         } else {
           alert('No se pudo registrar');

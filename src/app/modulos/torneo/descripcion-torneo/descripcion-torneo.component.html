@@ -48,7 +48,9 @@
                               </div>
 
 
-                              <button (click)="RegistrarseEvento()" class="btn btn-primary px-3">Registrarse</button>
+                              <button *ngIf="numero_integrantes_equipo_torneo==1" (click)="RegistrarseEventoIndividual()" class="btn btn-primary px-3">Registrarse</button>
+                              <button *ngIf="numero_integrantes_equipo_torneo>1 && lider_equipo_id>0" (click)="RegistrarseEventoEquipo()" class="btn btn-primary px-3">Registrarse</button>
+
                       </div>
                       <div class="d-flex pt-2">
                           <strong class="text-dark mr-2">Torneo creado por:  programing</strong>

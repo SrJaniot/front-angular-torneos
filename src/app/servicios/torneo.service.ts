@@ -45,18 +45,31 @@ export class TorneoService {
       id_postgrest
     }, { headers: headers });
   }
-
-
-
-  RegistrarAsistenciaEvento(id_evento: number): any {
-    const id_postgrest = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
-    //convierte el id_postgrest a entero
-    let id_postgrest_entero = parseInt(id_postgrest!);
-    return this.http.post(this.url_ms_negocio+'registrarAsistenciaEvento', {
-      id_evento: id_evento,
-      id_usuario: id_postgrest_entero
+  ObtenerNumeroIntegrantesEquipoTorneo(id_torneo: number): Observable<RespuestaServer2> {
+    return this.http.get(`${this.url_ms_negocio}validarNumeroIntegrantesEquipoTorneo/${id_torneo}`);
+  }
+  VincularEquipoTorneo(id_equipo: number, id_torneo: number, id_liderEquipo:number): Observable<RespuestaServer2> {
+    return this.http.post(`${this.url_ms_negocio}vincularEquipoTorneo`, {
+      id_equipo: id_equipo,
+      id_torneo: id_torneo,
+      id_liderEquipo: id_liderEquipo
     });
   }
+
+  vincularUsuarioTorneo(id_usuario: number, id_torneo: number): Observable<RespuestaServer2> {
+    return this.http.post(`${this.url_ms_negocio}vincularUsuarioTorneo`, {
+      id_usuario: id_usuario,
+      id_torneo: id_torneo
+    });
+  }
+
+
+
+
+
+
+
+
 
 
 
