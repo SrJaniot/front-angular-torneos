@@ -7,6 +7,7 @@ import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
 import { RespuestaServerCrearEquipo } from '../../../Modelos/RespuestaServer.CrearEquipo.model';
 import { NotificacionCorreoService } from '../../../servicios/notificacion-correo.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -41,6 +42,8 @@ export class CrearEquipoComponent {
     private SeguridadService: SeguridadService,
     private NotificacionCorreoService: NotificacionCorreoService,
     private router: Router,
+    private toast: NgToastService,
+
 
     ) {
   }
@@ -100,7 +103,8 @@ export class CrearEquipoComponent {
             this.archivoCargado = true;
             this.nombreArchivoCargado = data.file;
             //console.log(this.nombreArchivoCargado);
-            alert("Archivo cargado correctamente.");
+            //alert("Archivo cargado correctamente.");
+            this.toast.success({detail:"EXITO",summary:"Archivo cargado correctamente",duration:5000, position:'topCenter'});
 
             //asignar el nombre del archivo al campo del formulario del formgroup
             this.firstFormGroup.patchValue({
@@ -110,7 +114,8 @@ export class CrearEquipoComponent {
 
           },
           error: (err: any) => {
-            alert("Error cargando el archivo formato no valido o archivo muy pesado.");
+            //alert("Error cargando el archivo formato no valido o archivo muy pesado.");
+            this.toast.error({detail:"ERROR",summary:"Error cargando el archivo formato no valido o archivo muy pesado",duration:5000, position:'topCenter'});
           }
         });
   }
@@ -129,15 +134,18 @@ export class CrearEquipoComponent {
   EnviarFormulario() {
     //comprueba si los formularios son validos
     if (this.firstFormGroup.invalid) {
-      alert('Formulario invalido');
+      //alert('Formulario invalido');
+      this.toast.error({detail:"ERROR",summary:"Formulario invalido",duration:5000, position:'topCenter'});
       return;
     }
     if (this.secondFormGroup.invalid) {
-      alert('Formulario invalido');
+      //alert('Formulario invalido');
+      this.toast.error({detail:"ERROR",summary:"Formulario invalido",duration:5000, position:'topCenter'});
       return;
     }
     if (this.thirdFormGroup.invalid) {
-      alert('Formulario invalido por favor ingrese un correo valido en los campos de invitacion');
+      //alert('Formulario invalido por favor ingrese un correo valido en los campos de invitacion');
+      this.toast.error({detail:"ERROR",summary:"Formulario invalido por favor ingrese un correo valido en los campos de invitacion",duration:5000, position:'topCenter'});
       return;
     }
     //console.log(this.firstFormGroup.value);
@@ -156,7 +164,8 @@ export class CrearEquipoComponent {
     try {
       IdLiderEquipoparceado = parseInt(IdLiderEquipo!);
     } catch (error) {
-      alert('Error en el tipo de dato');
+      //alert('Error en el tipo de dato');
+      this.toast.error({detail:"ERROR",summary:"Error en el tipo de dato",duration:5000, position:'topCenter'});
       return;
     }
 
@@ -164,7 +173,8 @@ export class CrearEquipoComponent {
       next: (respuesta:RespuestaServerCrearEquipo) => {
         //console.log(respuesta);
         if(respuesta.CODIGO == 200){
-          alert('Equipo registrado con exito');
+          //alert('Equipo registrado con exito');
+          this.toast.success({detail:"EXITO",summary:"Equipo registrado con exito",duration:5000, position:'topCenter'});
           //console.log(respuesta.DATOS!);
           //capturo el id del equipo y el hash del equipo que viene en la respuesta respuesta.DATOS! como json
           let idEquipo = respuesta.DATOS!.idEquipo;
@@ -230,10 +240,12 @@ export class CrearEquipoComponent {
           //console.log(linkInvitacion);
           //copiar al portapapeles
           navigator.clipboard.writeText(this.linkInvitacion).then(function() {
-            alert('Link de invitacion copiado al portapapeles');
+            //alert('Link de invitacion copiado al portapapeles');
+
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
           });
+          this.toast.info({detail:"INFO",summary:"Link de invitacion copiado al portapapeles",duration:5000, position:'topCenter'});
 
           this.creoEquipo = true;
 
@@ -244,7 +256,8 @@ export class CrearEquipoComponent {
           //pasa al siguiente paso
 
         }else{
-          alert('Error al registrar el Equipo');
+          //alert('Error al registrar el Equipo');
+          this.toast.error({detail:"ERROR",summary:"Error al registrar el Equipo",duration:5000, position:'topCenter'});
         }
       }
     });
@@ -268,7 +281,8 @@ export class CrearEquipoComponent {
     navigator.clipboard.writeText(this.linkInvitacion).then(() => {
       console.log('Async: Copying to clipboard was successful!');
       // Muestra tu popup aquí
-      alert('Link de invitacion copiado al portapapeles');
+      //alert('Link de invitacion copiado al portapapeles');
+      this.toast.info({detail:"INFO",summary:"Link de invitacion copiado al portapapeles",duration:5000, position:'topCenter'});
     }, (err) => {
       console.error('Async: Could not copy text: ', err);
     });

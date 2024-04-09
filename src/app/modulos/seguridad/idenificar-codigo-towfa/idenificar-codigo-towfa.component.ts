@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -30,6 +31,8 @@ export class IdenificarCodigoTowfaComponent {
   constructor(
     private servicioSeguridad: SeguridadService,
     private router: Router,
+    private toast: NgToastService,
+
    ){ }
 
   ngOnInit() {
@@ -63,6 +66,7 @@ export class IdenificarCodigoTowfaComponent {
           //console.log('Usuario identificado');
           console.log(response);
           //alert('Usuario identificado');
+          this.toast.success({detail:"BIENVENIDO",summary:"USUARIO IDENTIFICADO",duration:5000, position:'topCenter'});
           this.servicioSeguridad.AlmacenarDatosUsuarioIdentificadoSESION(response);
           window.location.href = '/noticias/home';
 
@@ -72,7 +76,8 @@ export class IdenificarCodigoTowfaComponent {
           //this.router.navigateByUrl('/dashboard');
         }else{
           console.log(response);
-          alert('Error al identificar el usuario');
+          //alert('Error al identificar el usuario');
+          this.toast.error({detail:"ERROR",summary:"CODIGO NO VALIDO",duration:5000, position:'topCenter'});
           //console.log('Error al identificar el usuario');
         }
       });

@@ -7,7 +7,8 @@ import { RespuestaServer } from '../../../Modelos/RespuestaServer.model';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 
 import { MatDialog } from '@angular/material/dialog';
-import { DialogDataExampleDialogComponent } from '../../../publico/dialog-data-example-dialog/dialog-data-example-dialog.component'; ;
+import { DialogDataExampleDialogComponent } from '../../../publico/dialog-data-example-dialog/dialog-data-example-dialog.component';import { NgToastService } from 'ng-angular-popup';
+ ;
 
 
 
@@ -62,6 +63,7 @@ export class VerPerfilComponent {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
+    private toast: NgToastService,
   ) { }
 
   /**
@@ -142,11 +144,13 @@ export class VerPerfilComponent {
           this.perfilService.ActualizarFotoPerfilUsuario(id_jugador!, nombredelarchivo, token! ).subscribe({
             next: (data: RespuestaServer) => {
               if (data.CODIGO == 200) {
-                alert(data.MENSAJE);
+                //alert(data.MENSAJE);
+                this.toast.success({detail:"FOTO ACTUALIZADA",summary:"EXITO",duration:5000, position:'topCenter'});
                 location.reload();
 
               }else if (data.CODIGO == 401) {
-                alert(data.MENSAJE);
+                //alert(data.MENSAJE);
+                this.toast.error({detail:"ERROR",summary:"NO AUTORIZADO",duration:5000, position:'topCenter'});
 
               }
 
@@ -157,10 +161,12 @@ export class VerPerfilComponent {
           });
 
           this.archivoCargado = true;
-          alert("Archivo cargado correctamente.");
+          //alert("Archivo cargado correctamente.");
+          this.toast.success({detail:"ARCHIVO CARGADO",summary:"EXITO",duration:5000, position:'topCenter'});
         },
         error: (err: any) => {
-          alert("Error cargando el archivo formato no valido o archivo muy pesado.");
+          //alert("Error cargando el archivo formato no valido o archivo muy pesado.");
+          this.toast.error({detail:"ERROR",summary:"Error cargando el archivo formato no valido o archivo muy pesado.",duration:5000, position:'topCenter'});
         }
       });
     }

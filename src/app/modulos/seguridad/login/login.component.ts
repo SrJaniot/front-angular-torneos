@@ -8,6 +8,7 @@ import e, { response } from 'express';
 
 // libreria para mandar la clave encriptada "npm install crypto-js" y "npm i --save-dev @types/crypto-js"
 import {MD5} from 'crypto-js';
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,6 +30,8 @@ export class LoginComponent {
     private servicioSeguridad: SeguridadService,
     private servicioPublic: PublicService,
     private router: Router,
+    private toast: NgToastService,
+
    ){ }
   // funcion que se ejecuta cuando se inicializa el componente
   ngOnInit() {
@@ -105,18 +108,21 @@ export class LoginComponent {
           next: (respuesta:RespuestaServer) => {
             //console.log(respuesta);
             if(respuesta.CODIGO == 200){
-              alert('Usuario identificado con exito');
+              //alert('Usuario identificado con exito');
+              this.toast.success({detail:"EXITO",summary:"Usuario identificado con exito",duration:5000, position:'topCenter'});
               console.log(respuesta.DATOS);
               localStorage.removeItem('datosUsuario');
               localStorage.removeItem('datosSesion');
               if (this.servicioSeguridad.AlmacenarDatosUsuarioIdentificado(respuesta)){
                 this.router.navigate(['/seguridad/codigo-2fa']);
               }else{
-                alert('Error al identificar el usuario, ya existe un usuario identificado en el sistema');
+                //alert('Error al identificar el usuario, ya existe un usuario identificado en el sistema');
+                this.toast.error({detail:"ERROR",summary:"Error al identificar el usuario, ya existe un usuario identificado en el sistema",duration:5000, position:'topCenter'});
               }
 
             }else{
-              alert('Error al identificar el usuario');
+              //alert('Error al identificar el usuario');
+              this.toast.error({detail:"ERROR",summary:"Error al identificar el usuario",duration:5000, position:'topCenter'});
             }
 
       }
@@ -127,7 +133,9 @@ export class LoginComponent {
   EnviarRegister(){
     //console.log('enviando formulario');
     if (this.fGroup2.invalid) {
-      console.log('Formulario invalido');
+      //console.log('Formulario invalido');
+      //alert('Formulario invalido');
+      this.toast.error({detail:"ERROR",summary:"Formulario invalido",duration:5000, position:'topCenter'});
       return;
     }else{
       let nombre = this.fGroup2.controls['nombre'].value;
@@ -148,7 +156,8 @@ export class LoginComponent {
         tipo_documento = parseInt(tipo_documento);
 
       } catch (error) {
-        alert('Error en el tipo de dato');
+        //alert('Error en el tipo de dato');
+        this.toast.error({detail:"ERROR",summary:"Error en el tipo de dato",duration:5000, position:'topCenter'});
         return;
       }
 
@@ -167,10 +176,12 @@ export class LoginComponent {
         next: (respuesta:RespuestaServer) => {
           console.log(respuesta);
           if(respuesta.CODIGO == 200){
-            alert('Usuario registrado con exito');
+            //alert('Usuario registrado con exito');
+            this.toast.success({detail:"EXITO",summary:"Usuario registrado con exito",duration:5000, position:'topCenter'});
             this.deactivateRightPanel();
           }else{
-            alert('Error al registrar el usuario');
+            //alert('Error al registrar el usuario');
+            this.toast.error({detail:"ERROR",summary:"Error al registrar el usuario",duration:5000, position:'topCenter'});
           }
         }
       });

@@ -7,6 +7,7 @@ import { SeguridadService } from '../../../servicios/seguridad.service';
 import { RespuestaServerPerfilUsuario } from '../../../Modelos/RespuestaServer.PerfilUsuario.model';
 import { PerfilService } from '../../../servicios/perfil.service';
 import { RespuestaServerPerfilEquipo } from '../../../Modelos/RespuestaServer.PerfilEquipo.model';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-descripcion-torneo',
@@ -37,6 +38,7 @@ export class DescripcionTorneoComponent {
   id_equipo: string = '0';
 
   lider_equipo_id: number = 0;
+  id_usuario:number = 0;
 
 
 
@@ -52,6 +54,7 @@ export class DescripcionTorneoComponent {
     private sanitizer: DomSanitizer,
     private seguridadService: SeguridadService,
     private perfilService: PerfilService,
+    private toast: NgToastService,
 
 
   ){}
@@ -76,6 +79,8 @@ export class DescripcionTorneoComponent {
               }
             }
           );
+          let id_usuario = this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres;
+          this.id_usuario = parseInt(id_usuario!);
 
           (async () => {
             await this.obtenerIdEquipo(this.seguridadService.ObtenerDatosUsuarioIdentificadoSESION()?.usuario?.idPostgres!);
@@ -128,9 +133,11 @@ export class DescripcionTorneoComponent {
       (respuesta:any) => {
         //console.log(respuesta);
         if (respuesta.CODIGO == 200) {
-          alert('Te has registrado correctamente');
+          //alert('Te has registrado correctamente');
+          this.toast.success({detail:"EXITO",summary:"Te has registrado correctamente",duration:5000, position:'topCenter'});
         } else {
-          alert('No se pudo registrar');
+          //alert('No se pudo registrar');
+          this.toast.error({detail:"ERROR",summary:"No se pudo registrar",duration:5000, position:'topCenter'});
         }
       }
     );
@@ -155,9 +162,11 @@ export class DescripcionTorneoComponent {
         (respuesta:any) => {
           console.log(respuesta);
           if (respuesta.CODIGO == 200) {
-            alert('Te has registrado correctamente');
+            //alert('Te has registrado correctamente');
+            this.toast.success({detail:"EXITO",summary:"Te has registrado correctamente",duration:5000, position:'topCenter'});
           } else {
-            alert('No se pudo registrar');
+            //alert('No se pudo registrar');
+            this.toast.error({detail:"ERROR",summary:"No se pudo registrar",duration:5000, position:'topCenter'});
           }
         }
       );

@@ -19,14 +19,14 @@ export class NotificacionWhatsappService {
 
   EnviarMensajeWhatsapp(numeroDestino: string, mensaje: string): any {
     return this.http.post(this.url_notificaciones_whatsapp+'lead', {
-      message: mensaje,
+      mensaje: mensaje,
       phone: numeroDestino
     });
   }
 
   EnviarMensajeWhatsappArchivo(numeroDestino: string, mensaje: string, mediaUrl: string): any {
     return this.http.post(this.url_notificaciones_whatsapp+'mensaje-con-archivo', {
-      message: mensaje,
+      mensaje: mensaje,
       phone: numeroDestino,
       mediaUrl: mediaUrl
     });

@@ -9,6 +9,7 @@ import { ListTorneos } from '../../../Modelos/ListTorneos.model';
 import { NotificacionCorreoService } from '../../../servicios/notificacion-correo.service';
 import { NotificacionWhatsappService } from '../../../servicios/notificacion-whatsapp.service';
 import { SeguridadService } from '../../../servicios/seguridad.service';
+import { NgToastService } from 'ng-angular-popup';
 
 declare var $: any;
 
@@ -56,7 +57,8 @@ export class DescripcionEventosComponent {
     private sanitizer: DomSanitizer,
     private NotificacionCorreoService: NotificacionCorreoService,
     private NotificacionWhatsappService: NotificacionWhatsappService,
-    private seguridadService: SeguridadService
+    private seguridadService: SeguridadService,
+    private toast : NgToastService
 
 
   ){
@@ -173,7 +175,8 @@ export class DescripcionEventosComponent {
       (respuesta:any) => {
         console.log(respuesta);
         if (respuesta.CODIGO == 200) {
-          alert('Te has registrado correctamente');
+          //alert('Te has registrado correctamente');
+          this.toast.success({detail:"EXITO",summary:"Te has registrado correctamente",duration:5000, position:'topCenter'});
           console.log(respuesta.DATOS);
           let hash_validacion = respuesta.DATOS!;
           //convierte el id del evento a string
@@ -232,7 +235,8 @@ export class DescripcionEventosComponent {
 
 
         } else {
-          alert('No se pudo registrar');
+          //alert('No se pudo registrar');
+          this.toast.error({detail:"ERROR",summary:"No se pudo registrar",duration:5000, position:'topCenter'});
         }
       }
     );

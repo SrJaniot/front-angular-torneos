@@ -13,6 +13,11 @@ import { SpinnerComponentComponent } from './publico/spinner-component/spinner-c
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DialogDataExampleDialogComponent } from './publico/dialog-data-example-dialog/dialog-data-example-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgToastModule } from 'ng-angular-popup';
+//import { HttpClientModule } from '@angular/common/http'; importar este modulo que me permite hacer peticiones http
+
+
+//import { NgToastModule } from 'ng-angular-popup'; este es el modulo de popup  npm install ng-angular-popup  https://letsprogram.in/blog/647990c15960050b58aca375
 
 
 
@@ -33,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgToastModule
 
   ],
   providers: [

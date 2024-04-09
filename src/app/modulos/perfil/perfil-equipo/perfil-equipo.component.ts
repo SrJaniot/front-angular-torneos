@@ -4,6 +4,7 @@ import { PerfilService } from '../../../servicios/perfil.service';
 import { RespuestaServerPerfilEquipo } from '../../../Modelos/RespuestaServer.PerfilEquipo.model';
 import { ListaJugadores } from '../../../Modelos/ListaJugadores.model';
 import { SeguridadService } from '../../../servicios/seguridad.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-perfil-equipo',
@@ -41,6 +42,7 @@ export class PerfilEquipoComponent {
     private Router: Router,
     private PerfilService: PerfilService,
     private SeguridadService: SeguridadService,
+    private toast: NgToastService,
 
 
   ) { }
@@ -95,9 +97,11 @@ export class PerfilEquipoComponent {
   copyToClipboard() {
     const linkDeInvitacion = 'http://localhost:4200/equipo/validar-invitacion-equipo/'+this.id_equipo+'/'+this.hash_equipo; // Reemplaza esto con tu link de invitación
     navigator.clipboard.writeText(linkDeInvitacion).then(() => {
-      alert('Link de invitación copiado al portapapeles');
+      //alert('Link de invitación copiado al portapapeles');
+      this.toast.info({detail:"Link de invitación copiado al portapapeles",summary:"Link de invitación",duration:5000, position:'topCenter'});
     }, (error) => {
-      alert('Error al copiar el link de invitación: ' + error);
+      //alert('Error al copiar el link de invitación: ' + error);
+      this.toast.error({detail:"ERROR",summary:"Error al copiar el link de invitación",duration:5000, position:'topCenter'});
     });
   }
 
